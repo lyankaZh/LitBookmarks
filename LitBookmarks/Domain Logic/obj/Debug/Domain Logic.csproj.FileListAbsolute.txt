@@ -1,0 +1,53 @@
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Domain Logic.dll.config
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Domain Logic.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Domain Logic.pdb
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\EntityFramework.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.Owin.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.Owin.Security.Cookies.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.Owin.Security.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.Owin.Security.OAuth.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Newtonsoft.Json.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Ninject.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Ninject.Web.Common.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Ninject.Web.Mvc.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Owin.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\System.Web.Helpers.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\System.Web.Mvc.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\System.Web.Razor.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\System.Web.WebPages.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\WebActivatorEx.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\EntityFramework.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.Owin.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.Owin.Security.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.Owin.Security.Cookies.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Microsoft.Owin.Security.OAuth.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Newtonsoft.Json.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Ninject.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Ninject.Web.Common.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\Ninject.Web.Mvc.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\System.Web.Helpers.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\System.Web.Mvc.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\System.Web.Razor.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\System.Web.WebPages.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\obj\Debug\Domain Logic.dll
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\obj\Debug\Domain Logic.pdb
+C:\Users\iryna.bokalo\Documents\LitBookmarks\LitBookmarks\Domain Logic\obj\Debug\Domain Logic.csprojResolveAssemblyReference.cache

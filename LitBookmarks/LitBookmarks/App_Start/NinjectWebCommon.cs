@@ -61,6 +61,8 @@ namespace LitBookmarks.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-        }        
+            System.Web.Mvc.DependencyResolver.SetResolver(new LitBookmarks.Infrastructure.NinjectDependencyResolver(kernel));
+
+        }
     }
 }
