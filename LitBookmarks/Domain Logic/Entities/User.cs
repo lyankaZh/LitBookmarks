@@ -9,11 +9,9 @@ namespace Domain_Logic.Entities
 {
     public class User:IdentityUser
     {
-
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }
-
         public string AboutMyself { get; set; }
 
         public byte[] ImageData { get; set; }
@@ -22,7 +20,8 @@ namespace Domain_Logic.Entities
         public virtual List<Genre> FavoriteGenres { get; set; }
         public virtual  List<Bookmark> Bookmarks { get; set; }
 
+        public virtual List<Like> Likes { get; set; }
         public virtual List<Comment> Comments { get; set; }
-
+        public virtual List<User> Followers { get; set; }
     }
 }

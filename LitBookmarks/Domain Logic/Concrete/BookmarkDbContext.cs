@@ -4,7 +4,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Domain_Logic.Concrete
 {
-    public class BookmarkDbContext:IdentityDbContext
+    public class BookmarkDbContext:IdentityDbContext<User>
     {
         public BookmarkDbContext(): base("BookmarkDb") 
         {
@@ -23,7 +23,7 @@ namespace Domain_Logic.Concrete
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<IdentityUser>().ToTable("Users");
+            modelBuilder.Entity<User>().ToTable("Users");
         }
     }
 

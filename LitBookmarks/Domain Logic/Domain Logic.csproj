@@ -141,13 +141,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\IUnitOfWork.cs" />
     <Compile Include="Concrete\BookmarkDbContext.cs" />
+    <Compile Include="Concrete\Repository.cs" />
+    <Compile Include="Concrete\UnitOfWork.cs" />
     <Compile Include="Entities\AppRole.cs" />
     <Compile Include="Entities\AppRoleManager.cs" />
     <Compile Include="Entities\AppUserManager.cs" />
     <Compile Include="Entities\Bookmark.cs" />
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Genre.cs" />
+    <Compile Include="Entities\Like.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -156,7 +161,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Abstract\" />
     <Folder Include="App_Start\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

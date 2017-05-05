@@ -1,0 +1,73 @@
+﻿@model LitBookmarks.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+<style>
+    .text-box {
+        width: 50% !important;
+        height: 100px !important;
+        border: 1px solid #ccc;
+        resize: none
+    }
+</style>
+<head>
+    <meta charset="utf-8">
+    <title>Bookmarks Login</title>
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+    <link href="~/Styles/animate.css" rel="stylesheet" />
+    <link href="~/Styles/loginFormStyle.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link href="~/Styles/ValidationStyles.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="top">
+            <h1 id="title" class="hidden"><span id="logo">Book<span>Marks</span></span></h1>
+        </div>
+      
+        @using (Html.BeginForm())
+        {
+            <div style="max-width: 30%" class="login-box animated fadeInUp">
+                <div class="box-header">
+                    <h2>Register</h2>
+                </div>
+                <label id="username">Username</label>
+                <br />
+                @Html.ValidationSummary()
+                @Html.TextBoxFor(x => x.Username, new { @id = "username" })
+                <br />
+                <label id="username">First Name</label>
+                <br />
+                @Html.TextBoxFor(x => x.FirstName, new { @id = "username" })
+                <br />
+                <label id="username">Last Name</label>
+                <br />
+                @Html.TextBoxFor(x => x.LastName, new { @id = "username" })
+                <br />
+                <label id="username">Email</label>
+                <br />
+                @Html.TextBoxFor(x => x.Email, new { @id = "username" })
+                <br />
+                <label id="username">Age</label>
+                <br />
+                @Html.TextBoxFor(x => x.Age, new { @id = "username" })
+                <br />
+                <label id="username">About you:</label>
+                <br />
+                @Html.EditorFor(x => x.About, new { @id = "username" })
+                <br />
+                <label id="password">Password</label>
+                <br />
+                @Html.PasswordFor(x => x.Password, new { @id = "password" })
+                <br />
+                <button type="submit">Sign Up</button>
+                <br />
+                <br />
+                @Html.ActionLink("I already have an account! Log in!", "Login")
+                <br />                
+            </div>
+        }
+    </div>
+</body>
