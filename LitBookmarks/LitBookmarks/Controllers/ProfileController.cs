@@ -29,6 +29,8 @@ namespace LitBookmarks.Controllers
         {
             _unitOfWork = unitOfWork;
         }
+
+
         public ActionResult MyProfile()
            {
           var currentUser = _unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
@@ -81,12 +83,79 @@ namespace LitBookmarks.Controllers
 
         public ActionResult ShowMyFollowers()
         {
-            return View();
+            var currentUser = _unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
+            var followers = new List<UserViewModel>();
+
+            foreach (var user in _unitOfWork.UserRepository.Get())
+            {
+                if (user.Following.Contains(currentUser))
+                {
+                    followers.Add(
+                   new UserViewModel()
+                   {
+                       AboutMyself = user.AboutMyself,
+                       Age = user.Age,
+                       Email = user.Email,
+                       FirstName = user.FirstName,
+                       LastName = user.LastName,
+                       UserName = user.UserName,
+                       ImageData = user.ImageData,
+                       ImageMimeType = user.ImageMimeType,
+                       FavoriteGenres = user.FavoriteGenres,
+                       FollowingAmount = user.Following.Count,
+                       FollowersAmount = (from u in _unitOfWork.UserRepository.Get()
+                                          where u.Following.Contains(user)
+                                          select u).Count(),
+                       IsFollowing = currentUser.Following.Contains(user)
+                   });
+                }
+            }
+
+            ViewBag.Title = "My Followers";
+            return View("FollowView", followers);
         }
 
         public ActionResult ShowFollowing()
         {
-            return View();
+            var currentUser = _unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
+            var following = new List<UserViewModel>();
+            foreach (var user in currentUser.Following)
+            {
+               following.Add(
+                   new UserViewModel()
+                   {
+                       AboutMyself = user.AboutMyself,
+                       Age = user.Age,
+                       Email = user.Email,
+                       FirstName = user.FirstName,
+                       LastName = user.LastName,
+                       UserName = user.UserName,
+                       ImageData = user.ImageData,
+                       ImageMimeType = user.ImageMimeType,
+                       FavoriteGenres = user.FavoriteGenres,
+                       FollowingAmount = user.Following.Count,
+                       FollowersAmount = (from u in _unitOfWork.UserRepository.Get()
+                                          where u.Following.Contains(user)
+                                          select u).Count(),
+                       IsFollowing = true
+                   });
+            }
+            
+            ViewBag.Title = "I follow";
+            return View("FollowView", following);
+        }
+
+        public FileContentResult GetImage(string id)
+        {
+            var user = _unitOfWork.UserRepository.GetById(id);
+            if (user != null)
+            {
+                return File(user.ImageData, user.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public ActionResult ShowAllBookmarks()
@@ -94,7 +163,10 @@ namespace LitBookmarks.Controllers
             return View();
         }
 
-       
-       
+        public ActionResult ShowAllUsers()
+        {
+            return View();
+        }
+
     }
 }

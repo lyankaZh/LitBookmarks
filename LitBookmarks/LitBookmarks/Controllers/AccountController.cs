@@ -36,11 +36,7 @@ namespace LitBookmarks.Controllers
         {
             if (string.IsNullOrEmpty(returnUrl))
             {
-                //returnUrl = "/Excursion/GetExcursions";
-
                 returnUrl = "/Profile/MyProfile";
-
-
             }
             if (ModelState.IsValid)
             {
