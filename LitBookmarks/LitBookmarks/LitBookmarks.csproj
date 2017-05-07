@@ -206,7 +206,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Images\background-book.jpg" />
     <Content Include="Images\photo_bg.jpg" />
+    <Content Include="Images\profileLayoutImage.jpg" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -220,6 +222,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Styles\animate.css" />
     <Content Include="Styles\loginFormStyle.css" />
+    <Content Include="Styles\profileStyles.css" />
     <Content Include="Styles\ValidationStyles.css" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -235,8 +238,11 @@
     <Compile Include="Hubs\Startup.cs" />
     <Compile Include="Infrastructure\IdentityConfig.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Models\AllGenresCheckBox.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Profile\AccountProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -249,6 +255,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Profile\MyProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -259,7 +266,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Login\" />
-    <Folder Include="Views\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain Logic\Domain Logic.csproj">

@@ -16,7 +16,7 @@ namespace Domain_Logic.Entities
 
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
-
+        public string LastActivityDateTime { get; set; }
         public virtual List<Genre> FavoriteGenres { get; set; }
         public virtual  List<Bookmark> Bookmarks { get; set; }
 
