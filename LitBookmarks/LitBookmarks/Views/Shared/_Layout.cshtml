@@ -3,38 +3,70 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <title>Bookmarks</title>
+    <link href="~/Styles/layoutStyles.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <ul>
+        
+            <div id="bookmark">
+                <img src="~/Images/bookmarkIcon.png" height="50" width="50"/>
+                <strong>Bookmarks</strong>
+                <br/>
+                <br/>
+                
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
-            </div>
-        </div>
-    </div>
+        
+        <li>
+            @Html.ActionLink("Profile info", "Index", "Profile")
 
-    <div class="container body-content">
+        </li>
+        <li>
+
+            @Html.ActionLink("My bookmarks", "ShowMyBookmarks", "Profile")
+
+        </li>
+        <li>
+
+            @Html.ActionLink("My followers", "ShowMyFollowers", "Profile")
+
+        </li>
+        <li>
+
+            @Html.ActionLink("Following", "ShowFollowing", "Profile")
+
+        </li>
+        <li>
+
+            @Html.ActionLink("All bookmarks", "ShowAllBookmarks", "Profile")
+
+        </li>
+        <li>
+
+            @Html.ActionLink("Logout", "LogOut", "Account")
+
+        </li>
+    </ul>
+
+    <div style="margin-left:25%;padding:1px 16px;height:1000px;">
+
         @RenderBody()
-        <hr />
+
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year Bookmarks</p>
         </footer>
     </div>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+
+
 </body>
 </html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('li.active').removeClass('active');
+        $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+    });
+</script>

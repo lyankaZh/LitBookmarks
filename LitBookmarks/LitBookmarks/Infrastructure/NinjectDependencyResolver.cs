@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Domain_Logic.Abstract;
+using Domain_Logic.Concrete;
 using Ninject;
 
 namespace LitBookmarks.Infrastructure
@@ -25,7 +27,7 @@ namespace LitBookmarks.Infrastructure
         }
         private void AddBindings()
         {
-            //kernel.Bind<ITravelRepository>().To<TravelRepository>();
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
         }
     }
 }

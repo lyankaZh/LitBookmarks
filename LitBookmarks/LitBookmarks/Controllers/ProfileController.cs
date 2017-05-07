@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 using System.Web.Profile;
 using System.Web.Security;
 using Domain_Logic.Concrete;
@@ -11,15 +15,23 @@ using LitBookmarks.Models;
 using LitBookmarks.Profile;
 using Microsoft.AspNet.Identity;
 
+using Domain_Logic.Abstract;
+
+
 namespace LitBookmarks.Controllers
 {
     [Authorize]
     public class ProfileController : Controller
     {
-        UnitOfWork unitOfWork = new UnitOfWork();
-        public ActionResult MyProfile()
+		
+        private readonly IUnitOfWork _unitOfWork;
+		  public ProfileController(IUnitOfWork unitOfWork)
         {
-          var currentUser = unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
+            _unitOfWork = unitOfWork;
+        }
+        public ActionResult MyProfile()
+           {
+          var currentUser = _unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
           ProfileViewModel profile = new ProfileViewModel();
             profile.Age = currentUser.Age;
             profile.FirstName = currentUser.FirstName;
@@ -30,11 +42,11 @@ namespace LitBookmarks.Controllers
             profile.LastActivityDateTime = currentUser.LastActivityDateTime;
             var checkBoxes = new List<AllGenresCheckBox>();
             
-            for (int i = 0; i < unitOfWork.GenreRepository.Get().ToList().Count; i++)
+            for (int i = 0; i < _unitOfWork.GenreRepository.Get().ToList().Count; i++)
             {
                 checkBoxes.Add(new AllGenresCheckBox()
                 { 
-                    Genre = unitOfWork.GenreRepository.Get().ToList()[i]
+                    Genre = _unitOfWork.GenreRepository.Get().ToList()[i]
                 });
             }
            
@@ -48,18 +60,41 @@ namespace LitBookmarks.Controllers
         {
             if (ModelState.IsValid)
             {
-                var currentUser = unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
+                var currentUser = _unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
                 for (int i = 0; i < profile.AllGenres.Count; i++)
                 {
                     if (profile.AllGenres[i].Selected)
                     {
-                        currentUser.FavoriteGenres.Add(unitOfWork.GenreRepository.GetById(profile.AllGenres[i].Genre.GenreId));
+                        currentUser.FavoriteGenres.Add(_unitOfWork.GenreRepository.GetById(profile.AllGenres[i].Genre.GenreId));
                     }
                 }
-               unitOfWork.UserRepository.Update(currentUser);
-                unitOfWork.Save();
+               _unitOfWork.UserRepository.Update(currentUser);
+                _unitOfWork.Save();
             }
             return Redirect("MyProfile");
         }
+
+        public ActionResult ShowMyBookmarks()
+        {
+            return View();
+        }
+
+        public ActionResult ShowMyFollowers()
+        {
+            return View();
+        }
+
+        public ActionResult ShowFollowing()
+        {
+            return View();
+        }
+
+        public ActionResult ShowAllBookmarks()
+        {
+            return View();
+        }
+
+       
+       
     }
 }

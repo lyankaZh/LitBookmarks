@@ -37,7 +37,10 @@ namespace LitBookmarks.Controllers
             if (string.IsNullOrEmpty(returnUrl))
             {
                 //returnUrl = "/Excursion/GetExcursions";
+
                 returnUrl = "/Profile/MyProfile";
+
+
             }
             if (ModelState.IsValid)
             {
@@ -68,7 +71,7 @@ namespace LitBookmarks.Controllers
         {
             if (string.IsNullOrEmpty(returnUrl))
             {
-                returnUrl = "/Account/Login";
+                returnUrl = "/Profile/MyProfile";
             }
             if (ModelState.IsValid)
             {
@@ -110,7 +113,7 @@ namespace LitBookmarks.Controllers
         public RedirectResult LogOut()
         {
             AuthManager.SignOut();
-            return new RedirectResult("/Home/Index");
+            return new RedirectResult("/Account/Login");
         }
 
         private IAuthenticationManager AuthManager => HttpContext.GetOwinContext().Authentication;
