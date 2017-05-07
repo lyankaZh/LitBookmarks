@@ -13,5 +13,25 @@ namespace LitBookmarks.Controllers
         {
             return View();
         }
+
+        public ActionResult ShowMyBookmarks()
+        {
+            return View();
+        }
+
+        public ActionResult ShowMyFollowers()
+        {
+            return View();
+        }
+
+        public ActionResult ShowFollowing()
+        {
+            return View();
+        }
+
+        public ActionResult ShowAllBookmarks()
+        {
+            return View();
+        }
     }
 }
