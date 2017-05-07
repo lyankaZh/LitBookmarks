@@ -1,14 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Domain_Logic.Abstract;
 
 namespace LitBookmarks.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
-        // GET: Profile
+        private readonly IUnitOfWork _unitOfWork;
+
+        public ProfileController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -33,5 +44,8 @@ namespace LitBookmarks.Controllers
         {
             return View();
         }
+
+       
+       
     }
 }

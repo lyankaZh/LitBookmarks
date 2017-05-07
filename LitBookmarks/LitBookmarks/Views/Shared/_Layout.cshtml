@@ -9,46 +9,55 @@
     <script src="~/Scripts/bootstrap.js"></script>
 </head>
 <body>
-<ul>
-    <li>
-        @Html.ActionLink("Profile info", "Index", "Profile")
+    <ul>
+        
+            <div id="bookmark">
+                <img src="~/Images/bookmarkIcon.png" height="50" width="50"/>
+                <strong>Bookmarks</strong>
+                <br/>
+                <br/>
+                
+            </div>
+        
+        <li>
+            @Html.ActionLink("Profile info", "Index", "Profile")
 
-    </li>
-    <li>
+        </li>
+        <li>
 
-        @Html.ActionLink("My bookmarks", "ShowMyBookmarks", "Profile")
+            @Html.ActionLink("My bookmarks", "ShowMyBookmarks", "Profile")
 
-    </li>
-    <li>
+        </li>
+        <li>
 
-        @Html.ActionLink("My bookmarks", "ShowMyFollowers", "Profile")
+            @Html.ActionLink("My followers", "ShowMyFollowers", "Profile")
 
-    </li>
-    <li>
+        </li>
+        <li>
 
-        @Html.ActionLink("My bookmarks", "ShowFollowing", "Profile")
+            @Html.ActionLink("Following", "ShowFollowing", "Profile")
 
-    </li>
-    <li>
+        </li>
+        <li>
 
-        @Html.ActionLink("My bookmarks", "ShowAllBookmarks", "Profile")
+            @Html.ActionLink("All bookmarks", "ShowAllBookmarks", "Profile")
 
-    </li>
-    <li>
+        </li>
+        <li>
 
-        @Html.ActionLink("Logout", "LogOut", "Account")
+            @Html.ActionLink("Logout", "LogOut", "Account")
 
-    </li>
-</ul>
+        </li>
+    </ul>
 
-<div style="margin-left:25%;padding:1px 16px;height:1000px;">
+    <div style="margin-left:25%;padding:1px 16px;height:1000px;">
 
-    @RenderBody()
+        @RenderBody()
 
-    <footer>
-        <p>&copy; @DateTime.Now.Year Bookmarks</p>
-    </footer>
-</div>
+        <footer>
+            <p>&copy; @DateTime.Now.Year Bookmarks</p>
+        </footer>
+    </div>
 
 
 

@@ -38,3 +38,11 @@ li.active {
     background-color: #e2b760;
     color: white;
 }
+
+#bookmark {
+        font-style: italic !important;
+        font-size: 200%;
+    font-family: !important;
+    font-family: cursive;
+    color: #d3923e;
+}
