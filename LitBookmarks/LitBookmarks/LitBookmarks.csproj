@@ -208,6 +208,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\background-book.jpg" />
     <Content Include="Images\bookmarkIcon.png" />
+    <Content Include="Images\booksBackground.jpg" />
     <Content Include="Images\defaultImage.png" />
     <Content Include="Images\photo_bg.jpg" />
     <Content Include="Images\profileLayoutImage.jpg" />
@@ -223,6 +224,7 @@
     <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Styles\animate.css" />
+    <Content Include="Styles\anotherUserStyles.css" />
     <Content Include="Styles\layoutStyles.css" />
     <Content Include="Styles\loginFormStyle.css" />
     <Content Include="Styles\profileStyles.css" />
@@ -264,6 +266,7 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\ShowMyBookmarks.cshtml" />
     <Content Include="Views\Shared\FollowView.cshtml" />
+    <Content Include="Views\Profile\AnotherUserViewModel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

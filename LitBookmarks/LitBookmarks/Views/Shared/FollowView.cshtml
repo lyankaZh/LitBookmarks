@@ -1,7 +1,16 @@
-﻿@model List<LitBookmarks.Models.UserViewModel>
+﻿@using Microsoft.AspNet.Identity
+@model List<LitBookmarks.Models.UserViewModel>
 
 <link href="~/Styles/w3.css" rel="stylesheet" />
+
 <h2>@ViewBag.Title</h2>
+
+<style>
+    h3:hover {
+        color: gray
+    }
+     
+</style>
 
 @if (Model.Count == 0)
 {
@@ -12,7 +21,7 @@
 {
     <div class="w3-card-4 w3-round-large" style="width: 70%; min-width: 500px;">
         <header class="w3-container w3-sand" style="background-color: #eedcb1 !important; border-radius: 5px 5px 0px 0px ">
-            <h3><strong>@user.UserName</strong></h3>
+            <h3><strong>@Html.ActionLink(user.UserName, "ShowAnotherUserProfile", "Profile", user, new {style = "text-decoration: none"})</strong></h3>
         </header>
         <div class="w3-container">
              @if (user.ImageData == null)
@@ -23,17 +32,19 @@
              {
                 <img src="@Url.Action("GetImage", "Profile", new {id = user.Id})" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width: 70px; margin-top: 10px !important">
              }
-             @if (user.IsFollowing)
-             {
-                @*<button class="w3-button w3-gray w3-round-xlarge" style="display: block; margin: 3% auto; float: right">Unfollow</button>*@
-               @Html.ActionLink("Unfollow", "Unfollow", "Profile", user, new {@class="w3-button w3-gray w3-round-xlarge", style = "display: block; margin: 3% auto; float: right" })
-             }
-             else
-             {
-                 @*<button class="w3-button w3-indigo w3-round-xlarge" style="display: block; margin: 3% auto; float: right">Follow</button>*@
-                @Html.ActionLink("Follow", "Follow", "Profile", user, new { @class = "w3-button w3-indigo w3-round-xlarge", style = "display: block; margin: 3% auto; float: right" })
 
-             }
+            
+            @if (user.Id != User.Identity.GetUserId())
+            {
+                if(user.IsFollowing)
+                 {
+                     @Html.ActionLink("Unfollow", "Unfollow", "Profile", user, new {@class = "w3-button w3-gray w3-round-xlarge", style = "display: block; margin: 3% auto; float: right"})
+                 }
+                 else
+                 {
+                     @Html.ActionLink("Follow", "Follow", "Profile", user, new {@class = "w3-button w3-indigo w3-round-xlarge", style = "display: block; margin: 3% auto; float: right"})
+                 }
+            }
             <p style="font-size: 200% !important; font-size: large;  margin: 0 !important">@user.FirstName @user.LastName</p>
             <p style="font-style: italic !important; margin: 0 !important">@user.AboutMyself</p>
             <p style="margin: 0 !important"><strong>Followers</strong>: @user.FollowersAmount <strong>Following</strong>: @user.FollowingAmount</p>
