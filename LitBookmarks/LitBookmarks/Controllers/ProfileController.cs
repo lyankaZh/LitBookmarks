@@ -149,6 +149,29 @@ namespace LitBookmarks.Controllers
             return Edit();
         }
 
+        [HttpPost]
+        public ActionResult Delete(string id)
+        {
+            var user = _unitOfWork.UserRepository.GetById(id);
+            if (user != null)
+            {                
+                
+                    //TO DO - unsubscribe only from future excursions
+                    if (_unitOfWork.UserRepository.GetById(id).Followers.Count > 0)
+                    {
+                        TempData["deleteTravellerErrorMessage"] =
+                            "Before deleting profile unsubscribe from all users";
+                        return RedirectToAction("MyProfile");
+                    }
+                }
+                
+                HttpContext.GetOwinContext().Authentication.SignOut();
+                _unitOfWork.UserRepository.Delete(user);
+                _unitOfWork.Save();
+            
+            return new RedirectResult("/Account/Login");
+        }
+
         public ActionResult ShowMyBookmarks()
         {
             return View();

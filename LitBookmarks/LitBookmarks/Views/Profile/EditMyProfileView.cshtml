@@ -1,56 +1,53 @@
 ﻿@model Domain_Logic.Entities.User
 @{
     ViewBag.Title = "EditMyProfileView";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <head>
     <link href="~/Styles/profileStyles.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 
 </head>
 <img src="~/Images/profileLayoutImage.jpg" class="barImage" alt="John">
+<div class ="card">
 
-<div class="card">
-    @Html.ValidationSummary()
-    @using (Html.BeginForm("Edit", "Profile", FormMethod.Post))
-    {
+<div class="vcard-profile-pic">
+    <div id="img-style">
+        @if (Model.ImageData != null)
+        {
+            <img id="img-style" src="@Url.Action("GetImage", "Profile", new {id = Model.Id})" />
+        }
+        else
+        {
+            <img id="img-style" src="~/Images/defaultImage.png" />
+        }
+    </div>
+</div>
 
+<div style="position: relative">
+    <a class="btn" href="javascript:;">
+        <label>Choose File...</label>
 
-        <div class="vcard-profile-pic">
-            @if (Model.ImageData != null)
-            {
-                <img id ="img-style"src="@Url.Action("GetImage", "Profile", new {id = Model.Id})" />
-            }
-            else
-            {
-                <img  id ="img-style"src="~/Images/defaultImage.png" />
-            }
-        </div>
-
-
-
-        <div style="position: relative">
-            <a class="btn" href="javascript:;">
-                <label>Choose File...</label>
-
-                <input type="file" name="Image" size="40"
-                       style="position: absolute; z-index: 2; top: 0; left: 0; filter: alpha(opacity=0); opacity: 0; background-color: transparent; color: transparent;"
-                       onchange='$("#upload-file-info").html(this.files[0].name)'>
-                <span id="upload-file-info">
-                </span>
-            </a>
-
+        <input type="file" name="image" size="40"
+               style="position: absolute; z-index: 2; top: 0; left: 0; filter: alpha(opacity=0); opacity: 0; background-color: transparent; color: transparent;"
+               onchange='$("#upload-file-info").html(this.files[0].name)'>
+        <span id="upload-file-info">
+        </span>
+    </a>
+    <div calss ="card">
+        @using (Html.BeginForm("Edit", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
 
             <div class="mycontainer">
+
+          
                 @Html.HiddenFor(x => x.Id)
                 <p>
                     <label>Username: </label>
                 </p>
                 <p>
                     @Html.EditorFor(x => Model.UserName)
+
                 </p>
 
                 <p>
@@ -86,16 +83,16 @@
                 </p>
                 <p>
                     @if (Model.AboutMyself == null)
-                {
-                    Model.AboutMyself = "";
-                }
+                    {
+                        Model.AboutMyself = "";
+                    }
                     @Html.TextAreaFor(x => Model.AboutMyself, new { @id = "About" })
                 </p>
                 <input type="submit" value="Save" class="btn btn-success" />
                 @Html.ActionLink("Cancel", "MyProfile", "Profile", null, new { @class = "btn btn-default" })
             </div>
-            </div>
 
-    }
-
+        }
+    </div>
+</div>
 </div>
