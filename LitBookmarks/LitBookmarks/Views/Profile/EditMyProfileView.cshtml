@@ -1,0 +1,101 @@
+﻿@model Domain_Logic.Entities.User
+@{
+    ViewBag.Title = "EditMyProfileView";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="~/Styles/profileStyles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</head>
+<img src="~/Images/profileLayoutImage.jpg" class="barImage" alt="John">
+
+<div class="card">
+    @Html.ValidationSummary()
+    @using (Html.BeginForm("Edit", "Profile", FormMethod.Post))
+    {
+
+
+        <div class="vcard-profile-pic">
+            @if (Model.ImageData != null)
+            {
+                <img id ="img-style"src="@Url.Action("GetImage", "Profile", new {id = Model.Id})" />
+            }
+            else
+            {
+                <img  id ="img-style"src="~/Images/defaultImage.png" />
+            }
+        </div>
+
+
+
+        <div style="position: relative">
+            <a class="btn" href="javascript:;">
+                <label>Choose File...</label>
+
+                <input type="file" name="Image" size="40"
+                       style="position: absolute; z-index: 2; top: 0; left: 0; filter: alpha(opacity=0); opacity: 0; background-color: transparent; color: transparent;"
+                       onchange='$("#upload-file-info").html(this.files[0].name)'>
+                <span id="upload-file-info">
+                </span>
+            </a>
+
+
+            <div class="mycontainer">
+                @Html.HiddenFor(x => x.Id)
+                <p>
+                    <label>Username: </label>
+                </p>
+                <p>
+                    @Html.EditorFor(x => Model.UserName)
+                </p>
+
+                <p>
+                    <label>Last Name: </label>
+                </p>
+                <p>
+                    @Html.EditorFor(x => Model.LastName)
+                </p>
+
+                <p>
+                    <label>First Name: </label>
+                </p>
+                <p>
+                    @Html.EditorFor(x => Model.FirstName)
+                </p>
+                <p>
+                    <label>Age: </label>
+                </p>
+                <p>
+                    @Html.EditorFor(x => Model.Age)
+                </p>
+
+
+                <p>
+                    <label>Email: </label>
+                </p>
+                <p>
+                    @Html.EditorFor(x => Model.Email)
+                </p>
+
+                <p>
+                    <label>About: </label>
+                </p>
+                <p>
+                    @if (Model.AboutMyself == null)
+                {
+                    Model.AboutMyself = "";
+                }
+                    @Html.TextAreaFor(x => Model.AboutMyself, new { @id = "About" })
+                </p>
+                <input type="submit" value="Save" class="btn btn-success" />
+                @Html.ActionLink("Cancel", "MyProfile", "Profile", null, new { @class = "btn btn-default" })
+            </div>
+            </div>
+
+    }
+
+</div>

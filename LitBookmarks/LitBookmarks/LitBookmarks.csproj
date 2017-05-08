@@ -206,12 +206,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-
     <Content Include="Images\background-book.jpg" />
-
     <Content Include="Images\bookmarkIcon.png" />
     <Content Include="Images\defaultImage.png" />
-
     <Content Include="Images\photo_bg.jpg" />
     <Content Include="Images\profileLayoutImage.jpg" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -261,12 +258,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-
     <Content Include="Views\Profile\MyProfile.cshtml" />
-
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\ShowMyBookmarks.cshtml" />
-
+    <Content Include="Views\Profile\EditMyProfileView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -276,12 +271,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-
-    <Folder Include="Views\Login\" />
-
     <Folder Include="Javascript\" />
     <Folder Include="Services\" />
-
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain Logic\Domain Logic.csproj">

@@ -16,6 +16,7 @@ using LitBookmarks.Profile;
 using Microsoft.AspNet.Identity;
 
 using Domain_Logic.Abstract;
+using Microsoft.AspNet.Identity.Owin;
 
 
 namespace LitBookmarks.Controllers
@@ -33,6 +34,7 @@ namespace LitBookmarks.Controllers
            {
           var currentUser = _unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
           ProfileViewModel profile = new ProfileViewModel();
+               profile.Id = currentUser.Id;
             profile.Age = currentUser.Age;
             profile.FirstName = currentUser.FirstName;
             profile.LastName = currentUser.LastName;
@@ -40,6 +42,7 @@ namespace LitBookmarks.Controllers
             profile.Email = currentUser.Email;
             profile.FavoriteGenres = currentUser.FavoriteGenres;
             profile.LastActivityDateTime = currentUser.LastActivityDateTime;
+               profile.ImageData = currentUser.ImageData;
             var checkBoxes = new List<AllGenresCheckBox>();
             
             for (int i = 0; i < _unitOfWork.GenreRepository.Get().ToList().Count; i++)
@@ -74,6 +77,78 @@ namespace LitBookmarks.Controllers
             return Redirect("MyProfile");
         }
 
+        public FileContentResult GetImage(string id)
+        {
+            var user = _unitOfWork.UserRepository.Get().FirstOrDefault(p => p.Id == id);
+            if (user != null)
+            {
+                return File(user.ImageData, user.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public ActionResult Edit()
+        {
+            User user = UserManager.FindByIdAsync(User.Identity.GetUserId()).Result;
+            return View("EditMyProfileView", user);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(User model, HttpPostedFileBase image = null)
+        {
+            if (ModelState.IsValid)
+            {
+                User user = _unitOfWork.UserRepository.GetById(model.Id);
+                var amountOfUsersWithSameNick =
+                    (from u in _unitOfWork.UserRepository.Get()
+                     where u.UserName == model.UserName && u.UserName != user.UserName
+                     select u).Count();
+                if (amountOfUsersWithSameNick >= 1)
+                {
+                    ModelState.AddModelError("", "Such nickname already exists");
+                    return RedirectToAction("Edit");
+                }
+                var amountOfUsersWithSameEmail =
+                    (from u in _unitOfWork.UserRepository.Get()
+                     where u.Email == model.Email && u.Email != user.Email
+                     select u).Count();
+
+                if (amountOfUsersWithSameEmail >= 1)
+                {
+                    ModelState.AddModelError("", "Such email already exists");
+                    return RedirectToAction("Edit");
+                }
+
+                user.UserName = model.UserName;
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Email = model.Email;
+                user.Age = model.Age;
+                user.LastActivityDateTime = DateTime.Now.ToLongDateString();
+                if (!string.IsNullOrEmpty(model.AboutMyself))
+                {
+                    user.AboutMyself = model.AboutMyself;
+                }
+                else
+                {
+                    user.AboutMyself = null;
+                }
+                if (image != null)
+                {
+                    user.ImageMimeType = image.ContentType;
+                    user.ImageData = new byte[image.ContentLength];
+                    image.InputStream.Read(user.ImageData, 0, image.ContentLength);
+                }
+                _unitOfWork.UserRepository.Update(user);
+                _unitOfWork.Save();
+                return RedirectToAction("MyProfile");
+            }
+            return Edit();
+        }
+
         public ActionResult ShowMyBookmarks()
         {
             return View();
@@ -94,7 +169,14 @@ namespace LitBookmarks.Controllers
             return View();
         }
 
-       
-       
+        private AppUserManager UserManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            }
+        }
+
+
     }
 }

@@ -16,6 +16,17 @@
 <img src="~/Images/profileLayoutImage.jpg" class="barImage" alt="John">
 <div class="card">
 
+    <div class="vcard-profile-pic">
+
+        @if (Model.ImageData != null)
+        {
+            <img id ="img-style"src="@Url.Action("GetImage", "Profile", new {id = Model.Id})" />
+        }
+        else
+        {
+            <img id ="img-style"src="~/Images/defaultImage.png" />
+        }
+    </div>
 
     <div class="mycontainer">
         <h1> <span class="title">@Model.FirstName @Model.LastName</span></h1>
@@ -87,5 +98,20 @@
             
             
         }
+        <div id="normal-button">
+            @Html.ActionLink("Edit Profile", "Edit", "Profile", null, new { @class = "btn btn-warning" })
+
+            @using (Html.BeginForm("Delete", "User"))
+            {
+                @Html.HiddenFor(x => Model.Id)
+                <input type="submit"
+                       class="btn btn-danger"
+                       onclick="return confirm('Are you sure you wish to delete your profile?');"
+                       value="Delete" />
+            }
+        </div>
+
+
+
 </div>
     </div>
