@@ -210,7 +210,10 @@
     <Content Include="Images\bookmarkIcon.png" />
     <Content Include="Images\booksBackground.jpg" />
     <Content Include="Images\defaultImage.png" />
+    <Content Include="Images\form-bg.png" />
+    <Content Include="Images\magnifier.png" />
     <Content Include="Images\photo_bg.jpg" />
+    <Content Include="Images\popup-bg.png" />
     <Content Include="Images\profileLayoutImage.jpg" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -228,6 +231,7 @@
     <Content Include="Styles\layoutStyles.css" />
     <Content Include="Styles\loginFormStyle.css" />
     <Content Include="Styles\profileStyles.css" />
+    <Content Include="Styles\searchStyles.css" />
     <Content Include="Styles\ValidationStyles.css" />
     <Content Include="Styles\w3.css" />
     <Content Include="Web.config" />
