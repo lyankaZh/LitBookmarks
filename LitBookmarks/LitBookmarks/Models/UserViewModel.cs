@@ -21,5 +21,6 @@ namespace LitBookmarks.Models
         public int FollowingAmount { get; set; }
         public List<Genre> FavoriteGenres { get; set; }
         public bool IsFollowing { get; set; }
+        public string ReturnUrl { get; set; }
     }
 }

@@ -93,6 +93,7 @@ namespace LitBookmarks.Controllers
                     followers.Add(
                    new UserViewModel()
                    {
+                       Id = user.Id,
                        AboutMyself = user.AboutMyself,
                        Age = user.Age,
                        Email = user.Email,
@@ -106,7 +107,8 @@ namespace LitBookmarks.Controllers
                        FollowersAmount = (from u in _unitOfWork.UserRepository.Get()
                                           where u.Following.Contains(user)
                                           select u).Count(),
-                       IsFollowing = currentUser.Following.Contains(user)
+                       IsFollowing = currentUser.Following.Contains(user),
+                       ReturnUrl = "/Profile/ShowMyFollowers"
                    });
                 }
             }
@@ -124,6 +126,7 @@ namespace LitBookmarks.Controllers
                following.Add(
                    new UserViewModel()
                    {
+                       Id = user.Id,
                        AboutMyself = user.AboutMyself,
                        Age = user.Age,
                        Email = user.Email,
@@ -137,7 +140,8 @@ namespace LitBookmarks.Controllers
                        FollowersAmount = (from u in _unitOfWork.UserRepository.Get()
                                           where u.Following.Contains(user)
                                           select u).Count(),
-                       IsFollowing = true
+                       IsFollowing = true,
+                       ReturnUrl = "/Profile/ShowFollowing"
                    });
             }
             
@@ -158,6 +162,36 @@ namespace LitBookmarks.Controllers
             }
         }
 
+        public ActionResult Follow(UserViewModel user)
+        {
+            var currentUser = _unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
+            var userToFollow = _unitOfWork.UserRepository.GetById(user.Id);
+            currentUser.Following.Add(userToFollow);
+            _unitOfWork.UserRepository.Update(currentUser);
+            _unitOfWork.Save();
+            return new RedirectResult(user.ReturnUrl);
+        }
+
+        public ActionResult Unfollow(UserViewModel user)
+        {
+            var currentUser = _unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
+            var userToFollow = _unitOfWork.UserRepository.GetById(user.Id);
+            currentUser.Following.Remove(userToFollow);
+            _unitOfWork.UserRepository.Update(currentUser);
+            _unitOfWork.Save();
+            return new RedirectResult(user.ReturnUrl);
+        }
+
+        public ActionResult Like(int bookmarkId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ActionResult Unlike(int bookmarkId)
+        {
+            throw new NotImplementedException();
+        }
+
         public ActionResult ShowAllBookmarks()
         {
             return View();
@@ -165,7 +199,34 @@ namespace LitBookmarks.Controllers
 
         public ActionResult ShowAllUsers()
         {
-            return View();
+            var currentUser = _unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
+            var allUsers = new List<UserViewModel>();
+            foreach (var user in _unitOfWork.UserRepository.Get().Where(x => x != currentUser && x.UserName != "Admin"))
+            {
+                allUsers.Add(
+                    new UserViewModel()
+                    {
+                        Id = user.Id,
+                        AboutMyself = user.AboutMyself,
+                        Age = user.Age,
+                        Email = user.Email,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        UserName = user.UserName,
+                        ImageData = user.ImageData,
+                        ImageMimeType = user.ImageMimeType,
+                        FavoriteGenres = user.FavoriteGenres,
+                        FollowingAmount = user.Following.Count,
+                        FollowersAmount = (from u in _unitOfWork.UserRepository.Get()
+                                           where u.Following.Contains(user)
+                                           select u).Count(),
+                        IsFollowing = currentUser.Following.Contains(user),
+                        ReturnUrl = "/Profile/ShowAllUsers"
+                    });
+            }
+
+            ViewBag.Title = "All users";
+            return View("FollowView", allUsers);
         }
 
     }

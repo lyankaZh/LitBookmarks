@@ -25,11 +25,14 @@
              }
              @if (user.IsFollowing)
              {
-                <button class="w3-button w3-gray w3-round-xlarge" style="display: block; margin: 3% auto; float: right">Unfollow</button>
+                @*<button class="w3-button w3-gray w3-round-xlarge" style="display: block; margin: 3% auto; float: right">Unfollow</button>*@
+               @Html.ActionLink("Unfollow", "Unfollow", "Profile", user, new {@class="w3-button w3-gray w3-round-xlarge", style = "display: block; margin: 3% auto; float: right" })
              }
              else
              {
-                 <button class="w3-button w3-indigo w3-round-xlarge" style="display: block; margin: 3% auto; float: right">Follow</button>
+                 @*<button class="w3-button w3-indigo w3-round-xlarge" style="display: block; margin: 3% auto; float: right">Follow</button>*@
+                @Html.ActionLink("Follow", "Follow", "Profile", user, new { @class = "w3-button w3-indigo w3-round-xlarge", style = "display: block; margin: 3% auto; float: right" })
+
              }
             <p style="font-size: 200% !important; font-size: large;  margin: 0 !important">@user.FirstName @user.LastName</p>
             <p style="font-style: italic !important; margin: 0 !important">@user.AboutMyself</p>
