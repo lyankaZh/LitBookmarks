@@ -22,6 +22,7 @@ namespace Domain_Logic.Entities
 
         public virtual List<Like> Likes { get; set; }
         public virtual List<Comment> Comments { get; set; }
-        public virtual List<User> Followers { get; set; }
+        //люди, на яких підписався юзер
+        public virtual List<User> Following { get; set; }
     }
 }
