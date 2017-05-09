@@ -67,7 +67,7 @@ namespace LitBookmarks.Controllers
         {
             if (string.IsNullOrEmpty(returnUrl))
             {
-                returnUrl = "/Profile/MyProfile";
+                returnUrl = "/Account/Login";
             }
             if (ModelState.IsValid)
             {

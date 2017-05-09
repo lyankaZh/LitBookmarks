@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "AddBookmark";
+}
+<link href="~/Styles/bookmarkStyles.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet' type='text/css'>
+<link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+<div id="content">
+    <h1>Add bookmark</h1>
+
+    <form action=" " method="post" autocomplete="on">
+        <p>
+            <label for="username">
+               Book name
+                <span class="required">*</span>
+            </label>
+            <input type="text" name="username" id="username" required="required" placeholder="Book" />
+        </p>
+
+        <p>
+            <label for="username">
+                Book Author
+                <span class="required">*</span>
+            </label>
+            <input type="email"  placeholder="Author" required="required" />
+        </p>
+
+        <p>
+            <label for="usersite"> Name of bookmark</label>
+            <input type="url" name="usersite" id="usersite" placeholder="my bookmark" />
+        </p>
+
+        <p>
+            <label for="subject" class="icon-bullhorn"> Genres</label>
+            <input type="text" name="subject" id="subject" placeholder="Please choose genres." />
+        </p>
+
+        <p>
+            <label for="message" class="icon-comment">
+            Description
+                <span class="required">*</span>
+            </label>
+            <textarea placeholder="Your message here and I'll answer as soon as possible " required="required"></textarea>
+        </p>
+        <p class="indication">
+            Fields with
+            <span class="required"> * </span>are required
+        </p>
+
+        <input type="submit" value=" Send this mail ! " />
+
+    </form>
+</div>

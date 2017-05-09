@@ -12,7 +12,9 @@ namespace Domain_Logic.Entities
         public int BookmarkId { get; set; }
         public string Book { get; set; }
         public string Author { get; set; }
-        public DateTime Date { get; set; }
+        public string Description { get; set; }
+        public string Date { get; set; }
+        public string Name { get; set; }
         public virtual User BookmarkOwner { get; set; }
         public virtual List<Genre> Genres { get; set; }
         public virtual List<Comment> Comments { get; set; }

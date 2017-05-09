@@ -16,6 +16,7 @@ using LitBookmarks.Profile;
 using Microsoft.AspNet.Identity;
 
 using Domain_Logic.Abstract;
+using Microsoft.AspNet.Identity.Owin;
 
 
 namespace LitBookmarks.Controllers
@@ -33,9 +34,10 @@ namespace LitBookmarks.Controllers
 
 
         public ActionResult MyProfile()
-        {
-            var currentUser = _unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
-            ProfileViewModel profile = new ProfileViewModel();
+           {
+          var currentUser = _unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
+          ProfileViewModel profile = new ProfileViewModel();
+               profile.Id = currentUser.Id;
             profile.Age = currentUser.Age;
             profile.FirstName = currentUser.FirstName;
             profile.LastName = currentUser.LastName;
@@ -43,6 +45,7 @@ namespace LitBookmarks.Controllers
             profile.Email = currentUser.Email;
             profile.FavoriteGenres = currentUser.FavoriteGenres;
             profile.LastActivityDateTime = currentUser.LastActivityDateTime;
+               profile.ImageData = currentUser.ImageData;
             var checkBoxes = new List<AllGenresCheckBox>();
 
             for (int i = 0; i < _unitOfWork.GenreRepository.Get().ToList().Count; i++)
@@ -58,30 +61,109 @@ namespace LitBookmarks.Controllers
             return View("MyProfile", profile);
         }
 
-        [HttpPost]
-        public ActionResult AddFavoriteGenre(ProfileViewModel profile)
-        {
+     [HttpPost]
+        public ActionResult AddFavoriteGenre(List<AllGenresCheckBox> profile)
+        {         
             if (ModelState.IsValid)
             {
                 var currentUser = _unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
-                for (int i = 0; i < profile.AllGenres.Count; i++)
+                for (int i = 0; i < profile.Count; i++)
                 {
-                    if (profile.AllGenres[i].Selected)
+                    if (profile[i].Selected)
                     {
                         currentUser.FavoriteGenres.Add(
-                            _unitOfWork.GenreRepository.GetById(profile.AllGenres[i].Genre.GenreId));
+                            _unitOfWork.GenreRepository.GetById(profile[i].Genre.GenreId));
                     }
                 }
                 _unitOfWork.UserRepository.Update(currentUser);
                 _unitOfWork.Save();
             }
-            return Redirect("MyProfile");
+            return View("MyProfile");
         }
 
-        public ActionResult ShowMyBookmarks()
+        public ActionResult Edit()
         {
-            return View();
+            User user = UserManager.FindByIdAsync(User.Identity.GetUserId()).Result;
+            return View("EditMyProfileView", user);
         }
+
+        [HttpPost]
+        public ActionResult Edit(User model, HttpPostedFileBase image = null)
+        {
+            if (ModelState.IsValid)
+            {
+                User user = _unitOfWork.UserRepository.GetById(model.Id);
+                var amountOfUsersWithSameNick =
+                    (from u in _unitOfWork.UserRepository.Get()
+                     where u.UserName == model.UserName && u.UserName != user.UserName
+                     select u).Count();
+                if (amountOfUsersWithSameNick >= 1)
+                {
+                    ModelState.AddModelError("", "Such nickname already exists");
+                    return RedirectToAction("Edit");
+                }
+                var amountOfUsersWithSameEmail =
+                    (from u in _unitOfWork.UserRepository.Get()
+                     where u.Email == model.Email && u.Email != user.Email
+                     select u).Count();
+
+                if (amountOfUsersWithSameEmail >= 1)
+                {
+                    ModelState.AddModelError("", "Such email already exists");
+                    return RedirectToAction("Edit");
+                }
+
+                user.UserName = model.UserName;
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Email = model.Email;
+                user.Age = model.Age;
+                user.LastActivityDateTime = DateTime.Now.ToLongDateString();
+                if (!string.IsNullOrEmpty(model.AboutMyself))
+                {
+                    user.AboutMyself = model.AboutMyself;
+                }
+                else
+                {
+                    user.AboutMyself = null;
+                }
+                if (image != null)
+                {
+                    user.ImageMimeType = image.ContentType;
+                    user.ImageData = new byte[image.ContentLength];
+                    image.InputStream.Read(user.ImageData, 0, image.ContentLength);
+                }
+                _unitOfWork.UserRepository.Update(user);
+                _unitOfWork.Save();
+                return RedirectToAction("MyProfile");
+            }
+            return Edit();
+        }
+
+        [HttpPost]
+        public ActionResult Delete(string id)
+        {
+            var user = _unitOfWork.UserRepository.GetById(id);
+            if (user != null)
+            {                
+                
+                    //TO DO - unsubscribe only from future excursions
+                    if (_unitOfWork.UserRepository.GetById(id).Following.Count > 0)
+                    {
+                        TempData["deleteTravellerErrorMessage"] =
+                            "Before deleting profile unsubscribe from all users";
+                        return RedirectToAction("MyProfile");
+                    }
+                }
+                
+                HttpContext.GetOwinContext().Authentication.SignOut();
+                _unitOfWork.UserRepository.Delete(user);
+                _unitOfWork.Save();
+            
+            return new RedirectResult("/Account/Login");
+        }
+
+        
 
         public List<UserViewModel> GetFollowers(string userId)
         {
@@ -223,6 +305,15 @@ namespace LitBookmarks.Controllers
         {
             return View();
         }
+
+        private AppUserManager UserManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            }
+        }
+
 
         public ActionResult ShowAllUsers()
         {
