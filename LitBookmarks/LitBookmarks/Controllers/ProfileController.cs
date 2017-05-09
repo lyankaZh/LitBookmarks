@@ -61,18 +61,18 @@ namespace LitBookmarks.Controllers
             return View("MyProfile", profile);
         }
 
-        [HttpPost]
-        public ActionResult AddFavoriteGenre(ProfileViewModel profile)
+     [HttpPost]
+        public ActionResult AddFavoriteGenre(List<AllGenresCheckBox> profile)
         {         
             if (ModelState.IsValid)
             {
                 var currentUser = _unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
-                for (int i = 0; i < profile.AllGenres.Count; i++)
+                for (int i = 0; i < profile.Count; i++)
                 {
-                    if (profile.AllGenres[i].Selected)
+                    if (profile[i].Selected)
                     {
                         currentUser.FavoriteGenres.Add(
-                            _unitOfWork.GenreRepository.GetById(profile.AllGenres[i].Genre.GenreId));
+                            _unitOfWork.GenreRepository.GetById(profile[i].Genre.GenreId));
                     }
                 }
                 _unitOfWork.UserRepository.Update(currentUser);
@@ -163,10 +163,7 @@ namespace LitBookmarks.Controllers
             return new RedirectResult("/Account/Login");
         }
 
-        public ActionResult ShowMyBookmarks()
-        {
-            return View();
-        }
+        
 
         public List<UserViewModel> GetFollowers(string userId)
         {

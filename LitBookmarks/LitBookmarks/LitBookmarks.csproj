@@ -228,6 +228,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Styles\animate.css" />
     <Content Include="Styles\anotherUserStyles.css" />
+    <Content Include="Styles\bookmarkStyles.css" />
     <Content Include="Styles\layoutStyles.css" />
     <Content Include="Styles\loginFormStyle.css" />
     <Content Include="Styles\profileStyles.css" />
@@ -275,6 +276,9 @@
     <Content Include="Views\Shared\FollowView.cshtml" />
     <Content Include="Views\Profile\AnotherUserViewModel.cshtml" />
     <Content Include="Views\Bookmark\AllBookmarksView.cshtml" />
+    <Content Include="Views\Shared\_BookMarksView.cshtml" />
+    <Content Include="Views\Bookmark\MyBookmarks.cshtml" />
+    <Content Include="Views\Bookmark\AddBookmark.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -27,7 +27,7 @@
 
     <div class="mycontainer">
         <h1> <span class="title">@Model.FirstName @Model.LastName</span></h1>
-        <p class="title">Last Modified Date: @Model.LastActivityDateTime</p>
+        <p class="title">LModified Date: @Model.LastActivityDateTime</p>
         <p class="title">About me: @Model.AboutMyself</p>
         <p class="title">Age: @Model.Age</p>
         <p class="title">Email: @Model.Email</p>
@@ -48,8 +48,9 @@
         }
     </div>
     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Add Genre</button>
-     <button class="button" data-toggle="collapse" data-target="#addGenre"> Add my favorite genres </button>
+
     <div id="demo" class="collapse">         
+
             @if (Model.FavoriteGenres.Count == 0)
             {
                 bool IsFound = false;
@@ -64,7 +65,8 @@
                 }
                 if (IsFound)
                 {
-                    @Html.ActionLink("Save", "AddFavoriteGenre", "Profile", Model, new { @class = "btn btn-success" })
+                    @Html.HiddenFor(model=>model.AllGenres)
+                    @Html.ActionLink("Save", "AddFavoriteGenre", "Profile", Model.AllGenres, new { @class = "btn btn-success" })
                 }
                 else
                 {
@@ -87,17 +89,16 @@
                         IsFound = true;
                     }
                 }
-                if(IsFound)
+                if (IsFound)
                 {
-                    @Html.ActionLink("Save", "AddFavoriteGenre", "Profile", Model, new { @class = "btn btn-success" })
+                    @Html.HiddenFor(model => model.AllGenres)
+                    @Html.ActionLink("Save", "AddFavoriteGenre", "Profile", Model.AllGenres, new { @class = "btn btn-success" })
                 }
                 else
                 {
                     <span>No genres to add</span>
                 }
-            }
-         
-        }
+            }   
     </div>
  
     <div id="normal-button">
