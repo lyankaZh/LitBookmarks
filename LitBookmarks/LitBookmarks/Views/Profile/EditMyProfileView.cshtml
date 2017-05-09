@@ -11,35 +11,32 @@
 <img src="~/Images/profileLayoutImage.jpg" class="barImage" alt="John">
 <div class ="card">
 
-<div class="vcard-profile-pic">
-    <div id="img-style">
-        @if (Model.ImageData != null)
-        {
-            <img id="img-style" src="@Url.Action("GetImage", "Profile", new {id = Model.Id})" />
-        }
-        else
-        {
-            <img id="img-style" src="~/Images/defaultImage.png" />
-        }
-    </div>
-</div>
 
-<div style="position: relative">
-    <a class="btn" href="javascript:;">
-        <label>Choose File...</label>
 
-        <input type="file" name="image" size="40"
-               style="position: absolute; z-index: 2; top: 0; left: 0; filter: alpha(opacity=0); opacity: 0; background-color: transparent; color: transparent;"
-               onchange='$("#upload-file-info").html(this.files[0].name)'>
-        <span id="upload-file-info">
-        </span>
-    </a>
-    <div calss ="card">
+    <div class ="card">
+
+            <div id="img-style">
+                @if (Model.ImageData != null)
+                {
+                    <img id="img-style" src="@Url.Action("GetImage", "Profile", new {id = Model.Id})" />
+                }
+                else
+                {
+                    <img id="img-style" src="~/Images/defaultImage.png" />
+                }
+            </div>
+   
         @using (Html.BeginForm("Edit", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-
+        {                       
+                    <a class="button btn active" href="javascript:;">
+                        Choose file...
+                        <input type="file" name="image" size="40"
+                               style="position: relative; z-index: 2; top: 0; left: 0; filter: alpha(opacity=0); opacity: 0; background-color: transparent; color: transparent;"
+                               onchange='$("#upload-file-info").html(this.files[0].name)'>
+                        <span id="upload-file-info">
+                        </span>
+                    </a>         
             <div class="mycontainer">
-
           
                 @Html.HiddenFor(x => x.Id)
                 <p>
@@ -95,4 +92,4 @@
         }
     </div>
 </div>
-</div>
+

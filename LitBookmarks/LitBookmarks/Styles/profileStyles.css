@@ -9,11 +9,10 @@
 }
 
 #img-style {
-    vertical-align: middle;
+    margin: auto;
     height: 300px;
     width: 300px;
-    border-radius: 20%
-
+    border-radius: 20%;
 }
 
 .card {
@@ -78,6 +77,7 @@ h1#title {
     position: relative;
     top: 0px;
 }
+
     h1#title span span {
         font-weight: 400;
     }

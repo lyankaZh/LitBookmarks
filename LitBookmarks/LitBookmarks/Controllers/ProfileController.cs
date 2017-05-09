@@ -63,7 +63,7 @@ namespace LitBookmarks.Controllers
 
         [HttpPost]
         public ActionResult AddFavoriteGenre(ProfileViewModel profile)
-        {
+        {         
             if (ModelState.IsValid)
             {
                 var currentUser = _unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
@@ -78,20 +78,7 @@ namespace LitBookmarks.Controllers
                 _unitOfWork.UserRepository.Update(currentUser);
                 _unitOfWork.Save();
             }
-            return Redirect("MyProfile");
-        }
-
-        public FileContentResult GetImage(string id)
-        {
-            var user = _unitOfWork.UserRepository.Get().FirstOrDefault(p => p.Id == id);
-            if (user != null)
-            {
-                return File(user.ImageData, user.ImageMimeType);
-            }
-            else
-            {
-                return null;
-            }
+            return View("MyProfile");
         }
 
         public ActionResult Edit()
@@ -161,7 +148,7 @@ namespace LitBookmarks.Controllers
             {                
                 
                     //TO DO - unsubscribe only from future excursions
-                    if (_unitOfWork.UserRepository.GetById(id).Followers.Count > 0)
+                    if (_unitOfWork.UserRepository.GetById(id).Following.Count > 0)
                     {
                         TempData["deleteTravellerErrorMessage"] =
                             "Before deleting profile unsubscribe from all users";

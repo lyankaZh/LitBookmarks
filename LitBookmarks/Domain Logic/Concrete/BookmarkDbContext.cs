@@ -3,6 +3,7 @@ using System.Data.Entity;
 using Domain_Logic.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 
 namespace Domain_Logic.Concrete
 {
@@ -125,6 +126,77 @@ namespace Domain_Logic.Concrete
             {
                 userManager.AddToRole(admin.Id, "Admin");
             }
+
+
+            var bookmark = new Bookmark()
+            {
+                Author = "Taras Shevchenko",
+                Book = "Kateryna",
+                Description = "Not good, but no bad. Don't be in love with moskali, nothing else to add",
+                Date = DateTime.Now.ToLongDateString(),
+                BookmarkOwner = user,
+                Name = "Good book"
+                
+            };
+
+            context.Genres.Add(new Genre()
+            {
+                Name = "Fiction"
+            });
+
+            context.Genres.Add(new Genre()
+            {
+                Name = "Comedy"
+            });
+
+            context.Genres.Add(new Genre()
+            {
+                Name = "Drama"
+            });
+
+
+            context.Genres.Add(new Genre()
+            {
+                Name = "Romance novel"
+            });
+
+            context.Genres.Add(new Genre()
+            {
+                Name = "Tragedy"
+            });
+
+            context.Genres.Add(new Genre()
+            {
+                Name = "Satire"
+            });
+
+            context.Genres.Add(new Genre()
+            {
+                Name = "Non - fiction"
+            });
+
+            context.Genres.Add(new Genre()
+            {
+                Name = "Horror"
+            });
+
+            context.Genres.Add(new Genre()
+            {
+                Name = "Tragicomedy"
+            });
+
+            context.Genres.Add(new Genre()
+            {
+                Name = "Fantasy"
+            });
+
+            context.Genres.Add(new Genre()
+            {
+                Name = "Mythology"
+            });
+
+            context.Bookmarks.Add(bookmark);
+
             base.Seed(context);
         }
     }
