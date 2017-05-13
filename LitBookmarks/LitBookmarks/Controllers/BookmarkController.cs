@@ -86,13 +86,63 @@ namespace LitBookmarks.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             var bookmark = _unitOfWork.BookmarkRepository.GetById(id);
             _unitOfWork.BookmarkRepository.Delete(bookmark);
             _unitOfWork.Save();
 
             return RedirectToAction("ShowMyBookmarks", "Bookmark");
+        }
+
+   
+        public ActionResult EditView(int id)
+        {
+            Bookmark bookmark = _unitOfWork.BookmarkRepository.GetById(id);
+            BookmarkViewModel model = new BookmarkViewModel();
+            model.BookmarkId = bookmark.BookmarkId;
+            model.Name = bookmark.Name;
+            model.Book = bookmark.Book;
+            model.Author = bookmark.Author;
+            model.Description = bookmark.Description;
+            model.Date = bookmark.Date;
+            model.BookmarkOwner = bookmark.BookmarkOwner;
+            return View("EditBookmarkView", model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(BookmarkViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Bookmark bookmark = _unitOfWork.BookmarkRepository.GetById(model.BookmarkId);
+                if(model.Name != null)
+                {
+                    bookmark.Name = model.Name;
+                }
+
+                if (model.Book != null)
+                {
+                    bookmark.Book = model.Book;
+                }
+
+                if(model.Author != null)
+                {
+                    bookmark.Author = model.Author;
+                }
+
+                if (model.Description != null)
+                {
+
+                    bookmark.Description = model.Description;
+                }
+              
+                _unitOfWork.BookmarkRepository.Update(bookmark);
+                _unitOfWork.Save();
+                 
+                return RedirectToAction("ShowMyBookmarks","Bookmark");
+            }
+            return View("EditBookmarkView", model.BookmarkId);
         }
     }
 }
