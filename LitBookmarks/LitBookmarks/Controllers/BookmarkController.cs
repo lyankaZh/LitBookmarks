@@ -82,7 +82,7 @@ namespace LitBookmarks.Controllers
                 Date = DateTime.Now.ToLongDateString()
             });
             _unitOfWork.Save();
-            return View("MyBookmarks");
+            return RedirectToAction("ShowMyBookmarks", "Bookmark");
         }
 
         [HttpPost]
@@ -92,7 +92,7 @@ namespace LitBookmarks.Controllers
             _unitOfWork.BookmarkRepository.Delete(bookmark);
             _unitOfWork.Save();
 
-            return new RedirectResult("MyBookmarks");
+            return RedirectToAction("ShowMyBookmarks", "Bookmark");
         }
     }
 }
