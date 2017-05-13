@@ -12,19 +12,20 @@
     </div>
 </div>
 
-<br/>
+<br />
 <br />
 
 <head>
     <style>
-        h3:hover {
-            color: gray;
-        }
+        
+         .hover-class:hover {
+             color: gray;
+         }
     </style>
 </head>
 
 <body>
-   
+
     @*<div class="popup">
             <p>Please fill out this field.</p>
         </div>*@
@@ -39,8 +40,22 @@
     @foreach (var user in Model)
     {
         <div class="w3-card-4 w3-round-large" style="width: 70%; min-width: 500px;">
-            <div class="w3-container w3-sand" style="background-color: #eedcb1 !important; border-radius: 5px 5px 0px 0px ">
-                <h3><strong>@Html.ActionLink(user.UserName, "ShowAnotherUserProfile", "Profile", user, new { style = "text-decoration: none" })</strong></h3>
+            <div class="w3-container w3-sand" style="background-color: #eedcb1 !important; border-radius: 5px 5px 0px 0px">
+                @if (User.Identity.GetUserId() != user.Id)
+                {
+                    <div class ="hover-class">
+                        <h3>
+                            <strong>@Html.ActionLink(user.UserName, "ShowAnotherUserProfile", "Profile", user, new { style = "text-decoration: none" })</strong>
+                        </h3>
+                    </div>
+                }
+                else
+                {
+                    <h3>
+                        <strong style="text-decoration: none">@user.UserName</strong>
+                    </h3>
+
+                }
             </div>
             <div class="w3-container">
                 @if (user.ImageData == null)
