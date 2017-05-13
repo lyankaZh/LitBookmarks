@@ -22,11 +22,25 @@ namespace LitBookmarks.Controllers
 
         public ActionResult GetAllBookmarks ()
         {
-            List<BookmarkViewModel> allBookmarks = new List<BookmarkViewModel>();
+            List<BookmarkViewModel> allBookmarks = GetBookmarksByUserId();
+            return View("AllBookmarksView", allBookmarks);
+        }
 
-            foreach(var bookmark in _unitOfWork.BookmarkRepository.Get().ToList())
+        public ActionResult ShowMyBookmarks()
+        {
+            List<BookmarkViewModel> myBookmarks = GetBookmarksByUserId(User.Identity.GetUserId());
+            return View("MyBookmarks", myBookmarks);
+        }
+        
+        public List<BookmarkViewModel> GetBookmarksByUserId(string userId = null)
+        {
+            List<BookmarkViewModel> bookmarkModels = new List<BookmarkViewModel>();
+            var bookmarks = userId == null ? _unitOfWork.BookmarkRepository.Get().ToList() 
+                : _unitOfWork.BookmarkRepository.Get(x => x.BookmarkOwner.Id == userId).ToList();
+
+            foreach (var bookmark in bookmarks)
             {
-                allBookmarks.Add(new BookmarkViewModel()
+               bookmarkModels.Add(new BookmarkViewModel()
                 {
                     Author = bookmark.Author,
                     Book = bookmark.Book,
@@ -37,31 +51,14 @@ namespace LitBookmarks.Controllers
                     Genres = bookmark.Genres
                 });
             }
-            return View("AllBookmarksView", allBookmarks);
+            return bookmarkModels;
         }
 
-        public ActionResult ShowMyBookmarks()
+        [ChildActionOnly]
+        public ActionResult ShowBookmarksOfUserById(string id)
         {
-   
-            List<BookmarkViewModel> allBookmarks = new List<BookmarkViewModel>();
-
-            foreach (var bookmark in _unitOfWork.BookmarkRepository.Get().ToList())
-            {
-                if (bookmark.BookmarkOwner.Id == User.Identity.GetUserId())
-                {
-                    allBookmarks.Add(new BookmarkViewModel()
-                    {
-                        Author = bookmark.Author,
-                        Book = bookmark.Book,
-                        BookmarkId = bookmark.BookmarkId,
-                        Description = bookmark.Description,
-                        Date = bookmark.Date,
-                        BookmarkOwner = bookmark.BookmarkOwner,
-                        Genres = bookmark.Genres
-                    });
-                }
-            }
-            return View("MyBookmarks", allBookmarks);
+            var bookmarksOfUser = GetBookmarksByUserId(id);
+            return PartialView("_BookMarksView", bookmarksOfUser);
         }
 
         public ActionResult AddBookmark()

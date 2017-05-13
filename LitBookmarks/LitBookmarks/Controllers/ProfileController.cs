@@ -220,6 +220,8 @@ namespace LitBookmarks.Controllers
             return PartialView("FollowView", following);
         }
 
+      
+
         public List<UserViewModel> GetFollowing(string userId)
         {
             var currentUser = _unitOfWork.UserRepository.GetById(userId);
@@ -301,12 +303,7 @@ namespace LitBookmarks.Controllers
             throw new NotImplementedException();
         }
 
-        public ActionResult ShowAllBookmarks()
-        {
-            return View();
-        }
-
-        private AppUserManager UserManager
+       private AppUserManager UserManager
         {
             get
             {
@@ -352,5 +349,7 @@ namespace LitBookmarks.Controllers
         {
             return View("AnotherUserViewModel", user);
         }
+
+       
     }
 }

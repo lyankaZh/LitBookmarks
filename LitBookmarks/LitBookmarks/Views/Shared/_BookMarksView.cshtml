@@ -1,11 +1,12 @@
-﻿@model List<LitBookmarks.Models.BookmarkViewModel>
+﻿@using Microsoft.AspNet.Identity
+@model List<LitBookmarks.Models.BookmarkViewModel>
 @{
     ViewBag.Title = "AllBookmarksView";
 }
 
 <head>
     <style>
-        h3:hover {
+        .hover-class:hover {
             color: gray;
         }
     </style>
@@ -39,8 +40,22 @@
 
                 <p style="font-size: 200% !important; font-size: large;  margin: 0 !important"><strong>Book:</strong> @bookmark.Book</p>
                 <p style="font-size: 200% !important; font-size: large;  margin: 0 !important"><b>Author:</b> @bookmark.Author</p>
-                <p style="font-style: italic !important; margin: 0 !important"><h3>Bookmark owner: <strong>@Html.ActionLink(bookmark.BookmarkOwner.UserName, "ShowAnotherUserProfile", "Profile", bookmark.BookmarkOwner, new { style = "text-decoration: none" })</strong></h3></p>
-                <p style="font-style: italic !important; margin: 0 !important">Description: @bookmark.Description</p>
+                
+                    <p style="font-style: italic !important; margin: 0 !important">
+                        @if (bookmark.BookmarkOwner.Id != User.Identity.GetUserId())
+                        {
+                            <h3>Bookmark owner: <strong class ="hover-class">@Html.ActionLink(bookmark.BookmarkOwner.UserName, "ShowAnotherUserProfile", "Profile", bookmark.BookmarkOwner, new {style = "text-decoration: none"})</strong>
+                            </h3>
+                        }
+                        else
+                        {
+                            <h3>
+                                Bookmark owner: <strong>@bookmark.BookmarkOwner.UserName</strong>
+                            </h3>
+                        }
+                    </p>
+               
+                 <p style="font-style: italic !important; margin: 0 !important">Description: @bookmark.Description</p>
             </div>
 
             <br />
