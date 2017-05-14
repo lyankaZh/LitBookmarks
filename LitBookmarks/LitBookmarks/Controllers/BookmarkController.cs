@@ -20,15 +20,23 @@ namespace LitBookmarks.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public ActionResult GetAllBookmarks ()
+        public ActionResult GetAllBookmarks (string searchText = null)
         {
             List<BookmarkViewModel> allBookmarks = GetBookmarksByUserId();
+            if (searchText != null)
+            {
+                allBookmarks = allBookmarks.Where(x => x.Book.ToLower().Contains(searchText.ToLower())).ToList();
+            }
             return View("AllBookmarksView", allBookmarks);
         }
 
-        public ActionResult ShowMyBookmarks()
+        public ActionResult ShowMyBookmarks(string searchText = null)
         {
             List<BookmarkViewModel> myBookmarks = GetBookmarksByUserId(User.Identity.GetUserId());
+            if (searchText != null)
+            {
+                myBookmarks = myBookmarks.Where(x => x.Book == searchText).ToList();
+            }
             return View("MyBookmarks", myBookmarks);
         }
         

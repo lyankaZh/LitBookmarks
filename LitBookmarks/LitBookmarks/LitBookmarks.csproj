@@ -285,13 +285,12 @@
     <Content Include="Views\Profile\ShowMyBookmarks.cshtml" />
     <Content Include="Views\Profile\EditMyProfileView.cshtml" />
     <Content Include="Views\Shared\FollowView.cshtml" />
-    <Content Include="Views\Profile\AnotherUserView.cshtml" />
+    <Content Include="Views\Shared\AnotherUserView.cshtml" />
     <Content Include="Views\Bookmark\AllBookmarksView.cshtml" />
     <Content Include="Views\Shared\_BookMarksView.cshtml" />
     <Content Include="Views\Bookmark\MyBookmarks.cshtml" />
     <Content Include="Views\Bookmark\AddBookmark.cshtml" />
     <Content Include="Views\Bookmark\EditBookmarkView.cshtml" />
-    <Content Include="Views\Profile\AnotherUserAndBookmarksView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -8,23 +8,25 @@
 
 <h2>@ViewBag.Title</h2>
 <div>
-
-    <form method="get" action="@Url.Action(ViewContext.RouteData.Values["action"].ToString(),  ViewContext.RouteData.Values["controller"].ToString())">
-        @Html.TextBox("searchText", "", new { @class = "search-field", placeholder = "Type search text here...", @value = "" })
-        @if (ViewContext.RouteData.Values.ContainsKey("id"))
-        {
-            @Html.Hidden("id", ViewContext.RouteData.Values["id"].ToString())
-        }
+@if (!ViewContext.RouteData.Values.ContainsKey("id"))
+{
+    <form method="get" action="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString())">
+        @Html.TextBox("searchText", "", new {@class = "search-field", placeholder = "Type search text here...", @value = ""})
         <div class="submit-container">
-           
+
             <input type="submit" class="submit" value="">
         </div>
     </form>
 
+    <br />
+    <br />
+}
+    
+    
+
 </div>
 
-<br />
-<br />
+
 
 <head>
     <style>

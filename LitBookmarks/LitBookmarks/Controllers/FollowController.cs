@@ -25,26 +25,8 @@ namespace LitBookmarks.Controllers
                 if (user.Following.Contains(currentUser))
                 {
                     followers.Add(
-                        new UserViewModel()
-                        {
-                            Id = user.Id,
-                            AboutMyself = user.AboutMyself,
-                            Age = user.Age,
-                            Email = user.Email,
-                            FirstName = user.FirstName,
-                            LastName = user.LastName,
-                            UserName = user.UserName,
-                            ImageData = user.ImageData,
-                            ImageMimeType = user.ImageMimeType,
-                            FavoriteGenres = user.FavoriteGenres,
-                            BookmarksAmount = user.Bookmarks.Count,
-                            FollowingAmount = user.Following.Count,
-                            FollowersAmount = (from u in _unitOfWork.UserRepository.Get()
-                                               where u.Following.Contains(user)
-                                               select u).Count(),
-                            IsFollowing = currentUser.Following.Contains(user),
-                            
-                        });
+                        GetUserViewModelByUserId(user.Id)
+                       );
                 }
             }
             return followers;
@@ -60,7 +42,7 @@ namespace LitBookmarks.Controllers
             }
             return View("FollowView", followers);
         }
-        
+
 
         public ActionResult ShowFollowersOfUserById(string id, string searchText = null)
         {
@@ -76,11 +58,33 @@ namespace LitBookmarks.Controllers
         public ActionResult ShowFollowingOfUserById(string id, string searchText = null)
         {
             var following = GetFollowing(id);
-            if (searchText != null)
+            return PartialView("FollowView", following);    
+        }
+
+
+        private UserViewModel GetUserViewModelByUserId(string userId)
+        {
+            var user = _unitOfWork.UserRepository.GetById(userId);
+            return new UserViewModel()
             {
-                following = following.Where(x => x.UserName.ToLower().Contains(searchText.ToLower())).ToList();
-            }
-            return PartialView("FollowView", following);
+                Id = user.Id,
+                AboutMyself = user.AboutMyself,
+                Age = user.Age,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserName = user.UserName,
+                ImageData = user.ImageData,
+                ImageMimeType = user.ImageMimeType,
+                FavoriteGenres = user.FavoriteGenres,
+                BookmarksAmount = user.Bookmarks.Count,
+                FollowingAmount = user.Following.Count,
+                FollowersAmount = (from u in _unitOfWork.UserRepository.Get()
+                    where u.Following.Contains(user)
+                    select u).Count(),
+                IsFollowing = true,
+
+            };
         }
 
         public List<UserViewModel> GetFollowing(string userId)
@@ -89,27 +93,7 @@ namespace LitBookmarks.Controllers
             var following = new List<UserViewModel>();
             foreach (var user in currentUser.Following)
             {
-                following.Add(
-                    new UserViewModel()
-                    {
-                        Id = user.Id,
-                        AboutMyself = user.AboutMyself,
-                        Age = user.Age,
-                        Email = user.Email,
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
-                        UserName = user.UserName,
-                        ImageData = user.ImageData,
-                        ImageMimeType = user.ImageMimeType,
-                        FavoriteGenres = user.FavoriteGenres,
-                        BookmarksAmount = user.Bookmarks.Count,
-                        FollowingAmount = user.Following.Count,
-                        FollowersAmount = (from u in _unitOfWork.UserRepository.Get()
-                                           where u.Following.Contains(user)
-                                           select u).Count(),
-                        IsFollowing = true,
-                       
-                    });
+                following.Add(GetUserViewModelByUserId(user.Id));
             }
             return following;
         }

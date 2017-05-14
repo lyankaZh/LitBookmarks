@@ -12,15 +12,20 @@
 <link href="~/Styles/w3.css" rel="stylesheet" />
 <link href="~/Styles/searchStyles.css" rel="stylesheet" />
 
-<div>
-    <input type="text" class="search-field" placeholder="Type search text here..." />
-    <div class="submit-container">
-        <input type="submit" value="" class="submit" />
-    </div>
-</div>
+@if (!ViewContext.RouteData.Values.ContainsKey("id"))
+{
+    <form method="get" action="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString())">
+        @Html.TextBox("searchText", "", new { @class = "search-field", placeholder = "Type search text here...", @value = "" })
+        <div class="submit-container">
 
-<br />
-<br />
+            <input type="submit" class="submit" value="">
+        </div>
+    </form>
+
+    <br />
+    <br />
+}
+
 <body>
     @if (Model.Count == 0)
     {

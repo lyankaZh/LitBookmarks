@@ -6,7 +6,7 @@
 
 <link href="~/Styles/w3.css" rel="stylesheet" />
 
-<div @*style="background-image: url('/Images/booksBackground.jpg'); height: inherit; "*@>
+<div>
     <div style="display: block; width: 90%">
 
         @if (Model.ImageData == null)
@@ -36,13 +36,13 @@
             <p style="margin: 0 !important">Email: @Model.Email</p>
             @if (Model.FavoriteGenres.Count != 0)
             {
-            <p style="margin: 0 !important">
-                Favorite genres:
-                @foreach (var genre in Model.FavoriteGenres)
+                <p style="margin: 0 !important">
+                    Favorite genres:
+                    @foreach (var genre in Model.FavoriteGenres)
                 {
-                <span>@genre.Name </span>
-                }
-            </p>
+                        <span>@genre.Name </span>
+                    }
+                </p>
             }
             <div>
                 <p style="font-style: italic">@Model.AboutMyself</p>
@@ -55,33 +55,28 @@
             <a href="javascript:void(0)" onclick="openTab(event, 'Bookmarks');">
                 <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">@Model.BookmarksAmount Bookmarks</div>
             </a>
-            <a href="javascript:void(0)" onclick="openTab(event, 'Followers');">
-                <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">@Model.FollowersAmount Followers</div>
+            <a>
+                <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding w3-border-red">@Model.FollowersAmount Followers</div>
             </a>
+            
             <a href="javascript:void(0)" onclick="openTab(event, 'Following');">
                 <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">@Model.FollowingAmount Following</div>
             </a>
         </div>
 
-        <div id="Bookmarks" class="w3-container tab" style="display:none">
-            <h2>Bookmarks</h2>
-            @Html.Action("ShowBookmarksOfUserById", "Bookmark", Model.Id)
-        </div>
+       
 
         <div id="Followers" class="w3-container tab" style="display:none">
             <h2>Followers</h2>
             @Html.Action("ShowFollowersOfUserById", "Follow", Model.Id)
-            
+
         </div>
 
-        <div id="Following" class="w3-container tab" style="display:none">
-            <h2>Following</h2>
-            @Html.Action("ShowFollowingOfUserById", "Follow", Model.Id)
-        </div>
+     
     </div>
 </div>
 
-<script>
+@*<script>
     function openTab(evt, tabName) {
         var i, x, tablinks;
         x = document.getElementsByClassName("tab");
@@ -95,4 +90,4 @@
         document.getElementById(tabName).style.display = "block";
         evt.currentTarget.firstElementChild.className += " w3-border-red";
     }
-</script>
+</script>*@
