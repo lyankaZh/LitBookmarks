@@ -50,24 +50,36 @@ namespace LitBookmarks.Controllers
             return followers;
         }
 
-        public ActionResult ShowMyFollowers()
+        public ActionResult ShowMyFollowers(string searchText = null)
         {
             var followers = GetFollowers(User.Identity.GetUserId());
             ViewBag.Title = "My Followers";
+            if (searchText != null)
+            {
+                followers = followers.Where(x => x.UserName.ToLower().Contains(searchText.ToLower())).ToList();
+            }
             return View("FollowView", followers);
         }
+        
 
-        [ChildActionOnly]
-        public ActionResult ShowFollowersOfUserById(string id)
+        public ActionResult ShowFollowersOfUserById(string id, string searchText = null)
         {
             var followers = GetFollowers(id);
+            if (searchText != null)
+            {
+                followers = followers.Where(x => x.UserName.ToLower().Contains(searchText.ToLower())).ToList();
+            }
             return PartialView("FollowView", followers);
         }
 
-        [ChildActionOnly]
-        public ActionResult ShowFollowingOfUserById(string id)
+
+        public ActionResult ShowFollowingOfUserById(string id, string searchText = null)
         {
             var following = GetFollowing(id);
+            if (searchText != null)
+            {
+                following = following.Where(x => x.UserName.ToLower().Contains(searchText.ToLower())).ToList();
+            }
             return PartialView("FollowView", following);
         }
 
@@ -102,10 +114,14 @@ namespace LitBookmarks.Controllers
             return following;
         }
 
-        public ActionResult ShowFollowing()
+        public ActionResult ShowFollowing(string searchText = null)
         {
             var following = GetFollowing(User.Identity.GetUserId());
             ViewBag.Title = "I follow";
+            if (searchText != null)
+            {
+                following = following.Where(x => x.UserName.ToLower().Contains(searchText.ToLower())).ToList();
+            }
             return View("FollowView", following);
         }
 

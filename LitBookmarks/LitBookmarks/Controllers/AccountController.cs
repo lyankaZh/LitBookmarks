@@ -67,13 +67,19 @@ namespace LitBookmarks.Controllers
         {
             if (string.IsNullOrEmpty(returnUrl))
             {
-                returnUrl = "/Account/Login";
+                returnUrl = "/Profile/MyProfile";
             }
             if (ModelState.IsValid)
             {
                 User user = await UserManager.FindByNameAsync(model.Username);
                 if (user == null)
                 {
+                    if (model.Password != model.PasswordConfirm)
+                    {
+                        ModelState.AddModelError("", "These passwords don't match.");
+                        return View(model);
+                    }
+
                     IdentityResult creationResult = await UserManager.CreateAsync(
                         new User
                         {
@@ -87,11 +93,19 @@ namespace LitBookmarks.Controllers
                         model.Password);
                     if (creationResult.Succeeded)
                     {
+                        user = await UserManager.FindAsync(model.Username, model.Password);
+                        ClaimsIdentity ident = await UserManager.CreateIdentityAsync(user,
+                    DefaultAuthenticationTypes.ApplicationCookie);
+                        AuthManager.SignOut();
+                        AuthManager.SignIn(new AuthenticationProperties
+                        {
+                            IsPersistent = false
+                        }, ident);
                         return new RedirectResult(returnUrl);
                     }
                     AddErrorsFromResult(creationResult);
                     return View(model);
-                }              
+                }
                 return new RedirectResult(returnUrl);
             }
             ViewBag.returnUrl = returnUrl;

@@ -40,7 +40,7 @@
                 Favorite genres:
                 @foreach (var genre in Model.FavoriteGenres)
                 {
-                    <span>@genre.Name </span>
+                <span>@genre.Name </span>
                 }
             </p>
             }
@@ -66,13 +66,12 @@
         <div id="Bookmarks" class="w3-container tab" style="display:none">
             <h2>Bookmarks</h2>
             @Html.Action("ShowBookmarksOfUserById", "Bookmark", Model.Id)
-
         </div>
 
         <div id="Followers" class="w3-container tab" style="display:none">
             <h2>Followers</h2>
             @Html.Action("ShowFollowersOfUserById", "Follow", Model.Id)
-
+            
         </div>
 
         <div id="Following" class="w3-container tab" style="display:none">

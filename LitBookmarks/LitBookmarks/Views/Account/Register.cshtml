@@ -62,6 +62,10 @@
                 <br />
                 @Html.PasswordFor(x => x.Password, new { @id = "password" })
                 <br />
+                <label id="password">Confirm your password</label>
+                <br />
+                @Html.PasswordFor(x => x.PasswordConfirm, new { @id = "password" })
+                <br />
                 <button type="submit">Sign Up</button>
                 <br />
                 <br />

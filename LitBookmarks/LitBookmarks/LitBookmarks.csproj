@@ -265,6 +265,7 @@
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\UsersListWithSearchViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Profile\AccountProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -290,6 +291,7 @@
     <Content Include="Views\Bookmark\MyBookmarks.cshtml" />
     <Content Include="Views\Bookmark\AddBookmark.cshtml" />
     <Content Include="Views\Bookmark\EditBookmarkView.cshtml" />
+    <Content Include="Views\Profile\AnotherUserAndBookmarksView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -10,6 +10,9 @@ namespace LitBookmarks.Models
         [Required(ErrorMessage = "Please enter a password")]
         public string Password { get; set; }
 
+        [Required(ErrorMessage = "Please confirm password")]
+        public string PasswordConfirm { get; set; }
+
         [Required(ErrorMessage = "Please enter a email")]
         public string Email { get; set; }
 

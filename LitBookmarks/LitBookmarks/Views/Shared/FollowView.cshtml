@@ -1,15 +1,26 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using System.Web.UI.WebControls
+@using Microsoft.AspNet.Identity
 @model List<LitBookmarks.Models.UserViewModel>
 
 <link href="~/Styles/w3.css" rel="stylesheet" />
 <link href="~/Styles/searchStyles.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
 
 <h2>@ViewBag.Title</h2>
 <div>
-    <input type="text" class="search-field" value="Type search text here..." />
-    <div class="submit-container">
-        <input type="submit" value="" class="submit" />
-    </div>
+
+    <form method="get" action="@Url.Action(ViewContext.RouteData.Values["action"].ToString(),  ViewContext.RouteData.Values["controller"].ToString())">
+        @Html.TextBox("searchText", "", new { @class = "search-field", placeholder = "Type search text here...", @value = "" })
+        @if (ViewContext.RouteData.Values.ContainsKey("id"))
+        {
+            @Html.Hidden("id", ViewContext.RouteData.Values["id"].ToString())
+        }
+        <div class="submit-container">
+           
+            <input type="submit" class="submit" value="">
+        </div>
+    </form>
+
 </div>
 
 <br />
@@ -17,10 +28,9 @@
 
 <head>
     <style>
-        
-         .hover-class:hover {
-             color: gray;
-         }
+        .hover-class:hover {
+            color: gray;
+        }
     </style>
 </head>
 
@@ -43,7 +53,7 @@
             <div class="w3-container w3-sand" style="background-color: #eedcb1 !important; border-radius: 5px 5px 0px 0px">
                 @if (User.Identity.GetUserId() != user.Id)
                 {
-                    <div class ="hover-class">
+                    <div class="hover-class">
                         <h3>
                             <strong>@Html.ActionLink(user.UserName, "ShowAnotherUserProfile", "Profile", user, new { style = "text-decoration: none" })</strong>
                         </h3>
@@ -76,7 +86,7 @@
                     }
                     else
                     {
-                        @Html.ActionLink("Follow", "Follow", "Follow", user, new { @class = "w3-button w3-indigo w3-round-xlarge", style = "display: block; margin: 3% auto; float: right" })
+                        @Html.ActionLink("Folow", "Follow", "Follow", user, new { @class = "w3-button w3-indigo w3-round-xlarge", style = "display: block; margin: 3% auto; float: right" })
                     }
                 }
                 <p style="font-size: 200% !important; font-size: large;  margin: 0 !important">@user.FirstName @user.LastName</p>
@@ -90,3 +100,4 @@
 
 
 </body>
+

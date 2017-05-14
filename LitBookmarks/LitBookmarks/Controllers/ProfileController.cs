@@ -154,10 +154,8 @@ namespace LitBookmarks.Controllers
             return new RedirectResult("/Account/Login");
         }
 
-
-
-
-
+       
+      
         public FileContentResult GetImage(string id)
         {
             var user = _unitOfWork.UserRepository.GetById(id);
@@ -183,10 +181,14 @@ namespace LitBookmarks.Controllers
         }
 
 
-        public ActionResult ShowAllUsers()
+        
+
+        public ActionResult ShowAllUsers(string searchText = null)
         {
             var currentUser = _unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
             var allUsers = new List<UserViewModel>();
+            
+            
             foreach (var user in _unitOfWork.UserRepository.Get().Where(x => x != currentUser && x.UserName != "Admin"))
             {
                 allUsers.Add(
@@ -209,6 +211,10 @@ namespace LitBookmarks.Controllers
                                            select u).Count(),
                         IsFollowing = currentUser.Following.Contains(user),
                     });
+            }
+            if (searchText != null)
+            {
+                allUsers = allUsers.Where(x => x.UserName.ToLower().Contains(searchText.ToLower())).ToList();
             }
 
             ViewBag.Title = "All users";
