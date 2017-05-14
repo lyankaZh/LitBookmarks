@@ -62,7 +62,7 @@ namespace LitBookmarks.Controllers
 
                 });
             }
-            return bookmarkModels;
+            return bookmarkModels.OrderByDescending(x => x.Date).ToList();
         }
 
         [ChildActionOnly]
