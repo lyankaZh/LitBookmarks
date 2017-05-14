@@ -8,13 +8,13 @@
 <div id="content">
     <h1>Add bookmark</h1>
 
-    <form action=" " method="post" autocomplete="on">
+    <form action="/Bookmark/AddBookmark" method="post" autocomplete="on">
         <p>
             <label for="username">
                Book name
                 <span class="required">*</span>
             </label>
-            <input type="text" name="username" id="username" required="required" placeholder="Book" />
+            <input type="text" name="Book" id="Book" required="required" placeholder="Book" />
         </p>
 
         <p>
@@ -22,17 +22,17 @@
                 Book Author
                 <span class="required">*</span>
             </label>
-            <input type="email"  placeholder="Author" required="required" />
+            <input type="text" name="Author" id="Author" placeholder="Author" required="required" />
         </p>
 
         <p>
             <label for="usersite"> Name of bookmark</label>
-            <input type="url" name="usersite" id="usersite" placeholder="my bookmark" />
+            <input type="text" name="Name" id="Name" placeholder="my bookmark" />
         </p>
 
         <p>
             <label for="subject" class="icon-bullhorn"> Genres</label>
-            <input type="text" name="subject" id="subject" placeholder="Please choose genres." />
+            <input type="text" name="Genre" id="Genre" placeholder="Please choose genres." />
         </p>
 
         <p>
@@ -40,14 +40,14 @@
             Description
                 <span class="required">*</span>
             </label>
-            <textarea placeholder="Your message here and I'll answer as soon as possible " required="required"></textarea>
+            <textarea id ="Description" name ="Description" placeholder="Your message here and I'll answer as soon as possible " required="required"></textarea>
         </p>
         <p class="indication">
             Fields with
             <span class="required"> * </span>are required
         </p>
 
-        <input type="submit" value=" Send this mail ! " />
+        <input type="submit" value="Add bookmark" />
 
     </form>
 </div>

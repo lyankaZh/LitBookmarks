@@ -279,6 +279,7 @@
     <Content Include="Views\Shared\_BookMarksView.cshtml" />
     <Content Include="Views\Bookmark\MyBookmarks.cshtml" />
     <Content Include="Views\Bookmark\AddBookmark.cshtml" />
+    <Content Include="Views\Bookmark\EditBookmarkView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
