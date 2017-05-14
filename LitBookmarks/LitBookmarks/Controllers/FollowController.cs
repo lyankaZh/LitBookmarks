@@ -32,30 +32,30 @@ namespace LitBookmarks.Controllers
             return followers;
         }
 
-        public ActionResult ShowMyFollowers(string searchText = null)
+        public ActionResult ShowMyFollowers(string searchText = null, bool book = false, bool author = false, bool owner = false)
         {
             var followers = GetFollowers(User.Identity.GetUserId());
             ViewBag.Title = "My Followers";
             if (searchText != null)
             {
-                followers = followers.Where(x => x.UserName.ToLower().Contains(searchText.ToLower())).ToList();
+                followers = followers.Where(x => x.UserName.ToLower().Contains(searchText.ToLower())
+                                        || x.FirstName.ToLower().Contains(searchText.ToLower())
+                                         || x.LastName.ToLower().Contains(searchText.ToLower()
+                    )).ToList();
             }
             return View("FollowView", followers);
         }
 
 
-        public ActionResult ShowFollowersOfUserById(string id, string searchText = null)
+        public ActionResult ShowFollowersOfUserById(string id)
         {
             var followers = GetFollowers(id);
-            if (searchText != null)
-            {
-                followers = followers.Where(x => x.UserName.ToLower().Contains(searchText.ToLower())).ToList();
-            }
+          
             return PartialView("FollowView", followers);
         }
 
 
-        public ActionResult ShowFollowingOfUserById(string id, string searchText = null)
+        public ActionResult ShowFollowingOfUserById(string id)
         {
             var following = GetFollowing(id);
             return PartialView("FollowView", following);    
@@ -104,7 +104,10 @@ namespace LitBookmarks.Controllers
             ViewBag.Title = "I follow";
             if (searchText != null)
             {
-                following = following.Where(x => x.UserName.ToLower().Contains(searchText.ToLower())).ToList();
+                following = following.Where(x => x.UserName.ToLower().Contains(searchText.ToLower())
+                                        || x.FirstName.ToLower().Contains(searchText.ToLower())
+                                         || x.LastName.ToLower().Contains(searchText.ToLower()
+                    )).ToList();
             }
             return View("FollowView", following);
         }

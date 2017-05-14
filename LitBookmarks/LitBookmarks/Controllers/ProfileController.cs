@@ -214,7 +214,10 @@ namespace LitBookmarks.Controllers
             }
             if (searchText != null)
             {
-                allUsers = allUsers.Where(x => x.UserName.ToLower().Contains(searchText.ToLower())).ToList();
+                allUsers = allUsers.Where(x => x.UserName.ToLower().Contains(searchText.ToLower())
+                                        || x.FirstName.ToLower().Contains(searchText.ToLower())
+                                         || x.LastName.ToLower().Contains(searchText.ToLower()
+                    )).ToList(); 
             }
 
             ViewBag.Title = "All users";
