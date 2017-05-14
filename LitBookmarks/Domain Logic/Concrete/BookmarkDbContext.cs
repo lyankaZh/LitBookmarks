@@ -27,6 +27,16 @@ namespace Domain_Logic.Concrete
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<Bookmark>()
+             .HasMany<User>(s => s.Likers)
+             .WithMany(c => c.LikedBookmarks)
+             .Map(cs =>
+             {
+                 cs.MapLeftKey("BookmarkId");
+                 cs.MapRightKey("UserId");
+                 cs.ToTable("Likes");
+             });
+
         }
     }
 

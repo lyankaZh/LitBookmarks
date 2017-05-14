@@ -197,14 +197,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\background-book.jpg" />
     <Content Include="Images\bookmarkIcon.png" />
@@ -229,6 +236,7 @@
     <Content Include="Styles\animate.css" />
     <Content Include="Styles\anotherUserStyles.css" />
     <Content Include="Styles\bookmarkStyles.css" />
+    <Content Include="Styles\bootstrap.css" />
     <Content Include="Styles\layoutStyles.css" />
     <Content Include="Styles\loginFormStyle.css" />
     <Content Include="Styles\profileStyles.css" />
@@ -243,6 +251,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookmarkController.cs" />
     <Compile Include="Controllers\FollowController.cs" />
+    <Compile Include="Controllers\LikeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -293,6 +302,7 @@
     <Folder Include="Javascript\" />
     <Folder Include="Services\" />
     <Folder Include="Views\Follow\" />
+    <Folder Include="Views\Like\" />
     <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>

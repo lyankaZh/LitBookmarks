@@ -15,7 +15,7 @@ namespace LitBookmarks.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        
+
         public List<UserViewModel> GetFollowers(string userId)
         {
             var currentUser = _unitOfWork.UserRepository.GetById(userId);
@@ -43,7 +43,7 @@ namespace LitBookmarks.Controllers
                                                where u.Following.Contains(user)
                                                select u).Count(),
                             IsFollowing = currentUser.Following.Contains(user),
-                            ReturnUrl = "/Follow/ShowMyFollowers"
+                            
                         });
                 }
             }
@@ -96,7 +96,7 @@ namespace LitBookmarks.Controllers
                                            where u.Following.Contains(user)
                                            select u).Count(),
                         IsFollowing = true,
-                        ReturnUrl = "/Follow/ShowFollowing"
+                       
                     });
             }
             return following;
@@ -116,7 +116,11 @@ namespace LitBookmarks.Controllers
             currentUser.Following.Add(userToFollow);
             _unitOfWork.UserRepository.Update(currentUser);
             _unitOfWork.Save();
-            return new RedirectResult(user.ReturnUrl);
+
+            var returnUrl = Request.UrlReferrer == null ? "Profile/MyProfile" :
+                    Request.UrlReferrer.PathAndQuery;
+
+            return Redirect(returnUrl);
         }
 
         public ActionResult Unfollow(UserViewModel user)
@@ -126,7 +130,10 @@ namespace LitBookmarks.Controllers
             currentUser.Following.Remove(userToFollow);
             _unitOfWork.UserRepository.Update(currentUser);
             _unitOfWork.Save();
-            return new RedirectResult(user.ReturnUrl);
+            var returnUrl = Request.UrlReferrer == null ? "Profile/MyProfile" :
+                Request.UrlReferrer.PathAndQuery;
+
+            return Redirect(returnUrl);
         }
     }
 }

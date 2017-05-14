@@ -9,7 +9,7 @@ namespace Domain_Logic.Abstract
         Repository<Bookmark> BookmarkRepository { get; }
         Repository<User> UserRepository { get; }
         Repository<Comment> CommentRepository { get; }
-        Repository<Like> LikeRepository { get; }
+        //Repository<Like> LikeRepository { get; }
         Repository<Genre> GenreRepository { get; }
         void Save();
     }

@@ -173,15 +173,6 @@ namespace LitBookmarks.Controllers
 
 
 
-        public ActionResult Like(int bookmarkId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ActionResult Unlike(int bookmarkId)
-        {
-            throw new NotImplementedException();
-        }
 
         private AppUserManager UserManager
         {
@@ -217,7 +208,6 @@ namespace LitBookmarks.Controllers
                                            where u.Following.Contains(user)
                                            select u).Count(),
                         IsFollowing = currentUser.Following.Contains(user),
-                        ReturnUrl = "/Profile/ShowAllUsers"
                     });
             }
 
