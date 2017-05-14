@@ -88,7 +88,6 @@ namespace LitBookmarks.Controllers
             var bookmark = _unitOfWork.BookmarkRepository.GetById(id);
             _unitOfWork.BookmarkRepository.Delete(bookmark);
             _unitOfWork.Save();
-
             return RedirectToAction("ShowMyBookmarks", "Bookmark");
         }
 
@@ -139,7 +138,7 @@ namespace LitBookmarks.Controllers
                  
                 return RedirectToAction("ShowMyBookmarks","Bookmark");
             }
-            return View("EditBookmarkView", model.BookmarkId);
+            return RedirectToAction("EditView", model.BookmarkId);
         }
     }
 }

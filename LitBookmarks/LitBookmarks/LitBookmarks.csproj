@@ -242,6 +242,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookmarkController.cs" />
+    <Compile Include="Controllers\FollowController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -274,7 +275,7 @@
     <Content Include="Views\Profile\ShowMyBookmarks.cshtml" />
     <Content Include="Views\Profile\EditMyProfileView.cshtml" />
     <Content Include="Views\Shared\FollowView.cshtml" />
-    <Content Include="Views\Profile\AnotherUserViewModel.cshtml" />
+    <Content Include="Views\Profile\AnotherUserView.cshtml" />
     <Content Include="Views\Bookmark\AllBookmarksView.cshtml" />
     <Content Include="Views\Shared\_BookMarksView.cshtml" />
     <Content Include="Views\Bookmark\MyBookmarks.cshtml" />
@@ -291,6 +292,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Javascript\" />
     <Folder Include="Services\" />
+    <Folder Include="Views\Follow\" />
     <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿@model LitBookmarks.Models.UserViewModel
 
 @{
-    ViewBag.Title = "AnotherUserViewModel";
+    ViewBag.Title = "AnotherUserView";
 }
 
 <link href="~/Styles/w3.css" rel="stylesheet" />
@@ -18,11 +18,11 @@
             @if (Model.IsFollowing)
             {
 
-                @Html.ActionLink("Unfollow", "Unfollow", "Profile", Model, new { @class = "w3-button w3-gray w3-round-xlarge", style = "display: block; margin: 3% 25% auto 0px; float: right" })
+                @Html.ActionLink("Unfollow", "Unfollow", "Follow", Model, new { @class = "w3-button w3-gray w3-round-xlarge", style = "display: block; margin: 3% 25% auto 0px; float: right" })
             }
             else
             {
-                @Html.ActionLink("Follow", "Follow", "Profile", Model, new { @class = "w3-button w3-indigo w3-round-xlarge", style = "display: block; margin: 3% 22px auto 0px; float: right" })
+                @Html.ActionLink("Follow", "Follow", "Follow", Model, new { @class = "w3-button w3-indigo w3-round-xlarge", style = "display: block; margin: 3% 22px auto 0px; float: right" })
             }
 
             <button class="w3-button w3-indigo w3-round-xlarge" style="display: block; margin: 3% 22px auto 0px; float: right">Message</button>
@@ -71,13 +71,13 @@
 
         <div id="Followers" class="w3-container tab" style="display:none">
             <h2>Followers</h2>
-            @Html.Action("ShowFollowersOfUserById", "Profile", Model.Id)
+            @Html.Action("ShowFollowersOfUserById", "Follow", Model.Id)
 
         </div>
 
         <div id="Following" class="w3-container tab" style="display:none">
             <h2>Following</h2>
-            @Html.Action("ShowFollowingOfUserById", "Profile", Model.Id)
+            @Html.Action("ShowFollowingOfUserById", "Follow", Model.Id)
         </div>
     </div>
 </div>
