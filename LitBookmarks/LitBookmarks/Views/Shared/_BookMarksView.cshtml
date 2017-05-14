@@ -79,6 +79,12 @@
                         @Html.ActionLink("Like " + bookmark.AmountOfLikes, "Like", "Like", bookmark, new {style = "text-decoration: none"})
                     </button>
                 }
+                
+                <button class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-comment"></span>
+                    @Html.ActionLink("Comment", "Comment", "Comment", bookmark, new { style = "text-decoration: none" })
+                </button>
+                
 
             </div>
 
