@@ -19,5 +19,6 @@ namespace LitBookmarks.Models
 
         public int AmountOfLikes { get; set; }
         public bool IsLiked { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }

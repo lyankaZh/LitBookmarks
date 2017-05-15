@@ -22,7 +22,6 @@ namespace Domain_Logic.Entities
 
         public virtual List<Bookmark> LikedBookmarks { get; set; }
 
-        public virtual List<Comment> Comments { get; set; }
         //люди, на яких підписався юзер
         public virtual List<User> Following { get; set; }
     }

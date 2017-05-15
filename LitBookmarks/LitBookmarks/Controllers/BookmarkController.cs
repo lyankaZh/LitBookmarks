@@ -58,7 +58,8 @@ namespace LitBookmarks.Controllers
                     BookmarkOwner = bookmark.BookmarkOwner,
                     Genres = bookmark.Genres,
                     AmountOfLikes = bookmark.Likers.Count,
-                    IsLiked = bookmark.Likers.Count(x => x.Id == User.Identity.GetUserId()) == 1
+                    IsLiked = bookmark.Likers.Count(x => x.Id == User.Identity.GetUserId()) == 1,
+                    Comments = _unitOfWork.CommentRepository.Get(x => x.Bookmark.BookmarkId == bookmark.BookmarkId).ToList()
 
                 });
             }

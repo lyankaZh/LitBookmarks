@@ -18,8 +18,6 @@ namespace Domain_Logic.Entities
         public virtual User BookmarkOwner { get; set; }
         public virtual List<Genre> Genres { get; set; }
 
-        public virtual List<Comment> Comments { get; set; }
-
         public virtual List<User> Likers { get; set; }
     }
 }

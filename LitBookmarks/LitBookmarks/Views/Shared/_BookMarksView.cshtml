@@ -76,22 +76,64 @@
                 {
                     <button class="btn btn-default btn-sm">
                         <span class="glyphicon glyphicon-heart-empty"></span>
-                        @Html.ActionLink("Like " + bookmark.AmountOfLikes, "Like", "Like", bookmark, new {style = "text-decoration: none"})
+                        @Html.ActionLink("Like " + bookmark.AmountOfLikes, "Like", "Like", bookmark, new { style = "text-decoration: none" })
                     </button>
                 }
-                
+
                 <button class="btn btn-default btn-sm">
                     <span class="glyphicon glyphicon-comment"></span>
-                    @Html.ActionLink("Comment", "Comment", "Comment", bookmark, new { style = "text-decoration: none" })
+                    @Html.ActionLink("Comment", "ShowCommentField", "Comment", new { bookmarkId = bookmark.BookmarkId }, new { style = "text-decoration: none" })
                 </button>
-                
+
 
             </div>
 
+            @foreach (var comment in bookmark.Comments)
+            {
+
+                <div class="w3-container">
+
+
+                    <div style="display: block;">
+
+                        @if (comment.Author.Id == User.Identity.GetUserId() || bookmark.BookmarkOwner.Id == User.Identity.GetUserId())
+                        {
+                            using (Html.BeginForm("DeleteComment", "Comment", new {id = comment.CommentId}, FormMethod.Post))
+                            {
+                                <button style="margin-top: -0.5%; float: right" type="submit" id="id" class="btn btn-default btn-sm" onclick="return confirm('Are you sure you wish to delete this bookmark?');">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            }
+                        }
+                        @if (comment.Author.Id == User.Identity.GetUserId())
+                        {
+                            using (Html.BeginForm("EditComment", "Comment", new {id = comment.CommentId}))
+                            {
+                                <button style="margin-top: -0.5%; float: right" type="submit" id="id" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></button>
+                            }
+                        }
+                    </div>
+                    <p>
+                        <strong>@comment.Author.UserName:</strong> @comment.Text
+                    </p>
+                </div>
+            }
+
+            @if (TempData["commentField" + bookmark.BookmarkId] != null)
+            {
+                <div class="w3-container">
+                    <form action="/Comment/AddComment" method="post" autocomplete="on">
+                        @Html.Hidden("bookmark", bookmark.BookmarkId)
+                        @Html.TextArea("text", "")
+                        <br />
+                        <input type="submit" value="Add comment" class="btn btn-info">
+                    </form>
+                </div>
+                @Html.ActionLink("Cancel", "Cancel", "Comment", null, new { @class = "btn btn-default" })
+            }
             <br />
         </div>
     }
 
 </body>
-
 
