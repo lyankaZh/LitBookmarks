@@ -55,7 +55,7 @@ namespace LitBookmarks.Controllers
                     BookmarkId = bookmark.BookmarkId,
                     Description = bookmark.Description,
                     Date = bookmark.Date,
-                    BookmarkOwner = bookmark.BookmarkOwner,
+                    BookmarkOwner = GetUserViewModelByUserId(bookmark.BookmarkOwner.Id),
                     Genres = bookmark.Genres,
                     AmountOfLikes = bookmark.Likers.Count,
                     IsLiked = bookmark.Likers.Count(x => x.Id == User.Identity.GetUserId()) == 1,
@@ -64,6 +64,31 @@ namespace LitBookmarks.Controllers
                 });
             }
             return bookmarkModels.OrderByDescending(x => x.Date).ToList();
+        }
+
+        private UserViewModel GetUserViewModelByUserId(string userId)
+        {
+            var user = _unitOfWork.UserRepository.GetById(userId);
+            return new UserViewModel()
+            {
+                Id = user.Id,
+                AboutMyself = user.AboutMyself,
+                Age = user.Age,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserName = user.UserName,
+                ImageData = user.ImageData,
+                ImageMimeType = user.ImageMimeType,
+                FavoriteGenres = user.FavoriteGenres,
+                BookmarksAmount = user.Bookmarks.Count,
+                FollowingAmount = user.Following.Count,
+                FollowersAmount = (from u in _unitOfWork.UserRepository.Get()
+                                   where u.Following.Contains(user)
+                                   select u).Count(),
+                IsFollowing = true,
+
+            };
         }
 
         [ChildActionOnly]
@@ -114,7 +139,7 @@ namespace LitBookmarks.Controllers
             model.Author = bookmark.Author;
             model.Description = bookmark.Description;
             model.Date = bookmark.Date;
-            model.BookmarkOwner = bookmark.BookmarkOwner;
+            model.BookmarkOwner = GetUserViewModelByUserId(bookmark.BookmarkOwner.Id);
             return View("EditBookmarkView", model);
         }
 

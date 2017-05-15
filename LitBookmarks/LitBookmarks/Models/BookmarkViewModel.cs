@@ -15,7 +15,7 @@ namespace LitBookmarks.Models
         public string Date { get; set; }
         public string Name { get; set; }
         public List<Genre> Genres { get; set; }
-        public User BookmarkOwner { get; set; }
+        public UserViewModel BookmarkOwner { get; set; }
 
         public int AmountOfLikes { get; set; }
         public bool IsLiked { get; set; }

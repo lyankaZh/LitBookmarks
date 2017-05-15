@@ -52,14 +52,34 @@ namespace LitBookmarks.Controllers
             return Redirect(returnUrl);
         }
 
-        public ActionResult EditComment()
+        public ActionResult ShowEditCommentField(int id)
         {
-            throw new NotImplementedException();
+            var comment = _unitOfWork.CommentRepository.GetById(id);
+            TempData["commentEditField"+id]= comment.Text;
+            var returnUrl = Request.UrlReferrer == null ? "Profile/MyProfile" :
+             Request.UrlReferrer.PathAndQuery;
+            return Redirect(returnUrl);
         }
 
-        public ActionResult DeleteComment()
+        public ActionResult SaveEditedComment(string text, int commentId)
         {
-            throw new NotImplementedException();
+            var comment = _unitOfWork.CommentRepository.GetById(commentId);
+            comment.Text = text;
+            _unitOfWork.CommentRepository.Update(comment);
+            _unitOfWork.Save();
+            var returnUrl = Request.UrlReferrer == null ? "Profile/MyProfile" :
+             Request.UrlReferrer.PathAndQuery;
+            return Redirect(returnUrl);
+        }
+
+        public ActionResult DeleteComment(int id)
+        {
+            var comment = _unitOfWork.CommentRepository.GetById(id);
+            _unitOfWork.CommentRepository.Delete(comment);
+            _unitOfWork.Save();
+            var returnUrl = Request.UrlReferrer == null ? "Profile/MyProfile" :
+            Request.UrlReferrer.PathAndQuery;
+            return Redirect(returnUrl);
         }
     }
 }
