@@ -242,3 +242,7 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/LitBookmarks/LitBookmarks/bin/*.dll
+/LitBookmarks/LitBookmarks/bin/*.xml
+/LitBookmarks/LitBookmarks/bin/*.pdb
+/LitBookmarks/LitBookmarks/bin/*.config
