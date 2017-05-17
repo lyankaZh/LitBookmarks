@@ -5,49 +5,58 @@
 
 <link href="~/Styles/w3.css" rel="stylesheet" />
 
+
 <div class="w3-card-4 w3-round-large" style="width: 70%; min-width: 500px;">
-   @using (@Html.BeginForm("Edit", "Bookmark", new { BookmarkId = Model.BookmarkId }, FormMethod.Post))
+    <div class="w3-container w3-sand" style="background-color: #eedcb1 !important; border-radius: 5px 5px 0px 0px">
+
+        <h3>
+            <strong>Edit</strong>
+        </h3>
+    </div>
+    @using (@Html.BeginForm("Edit", "Bookmark", new {BookmarkId = Model.BookmarkId}, FormMethod.Post))
     {
 
-    <div class="w3-container">
+        <div class="w3-container">
 
-        <p style="font-size: 200% !important; font-size: large;  margin: 0 !important">
-            <label>
-                Bookmark name
-                <span class="required">*</span>
-            </label>
-            <input type="text" name="Name" id="Name" value=@Model.Name />
-        </p>
+            <p style="font-size: 100% !important; font-size: large; margin: 0 !important">
+                <label>
+                    Bookmark name
 
-        <p style="font-size: 200% !important; font-size: large;  margin: 0 !important">
-            <label>
-                Book name
-                <span class="required">*</span>
-            </label>
-            <input type="text" name="Book" id="Book" value=@Model.Book />
-        </p>
+                </label>
+                <input type="text" name="Name" id="Name" value=@Model.Name>
+            </p>
 
-        <p style="font-size: 200% !important; font-size: large;  margin: 0 !important">
-            <label>
-                Book Author
-                <span class="required">*</span>
-            </label>
-            <input type="text" name="Author" id="Author" value=@Model.Author />
-        </p>
+            <p style="font-size: 100% !important; font-size: large; margin: 0 !important">
+                <label>
+                    Book name
+
+                </label>
+                <input type="text" name="Book" id="Book" value=@Model.Book>
+            </p>
+
+            <p style="font-size: 100% !important; font-size: large; margin: 0 !important">
+                <label>
+                    Book Author
+
+                </label>
+                <input type="text" name="Author" id="Author" value=@Model.Author>
+            </p>
 
 
-        <p style="font-style: italic !important; margin: 0 !important">
-            <label>
-                Description
-                <span class="required">*</span>
-            </label>
-            <input type="text" name="Description" id="Description" value=@Model.Description />
-        </p>
+            <p style="font-style: italic !important; margin: 0 !important">
+                <label>
+                    Description
 
-    </div>
+                </label>
+                <input type="text" name="Description" id="Description" value=@Model.Description>
+            </p>
 
-    <br />
+        </div>
 
-    <input type="submit" value="Save" />
+        <br/>
+        <div style="align-content: center">
+            <button id="button-style" type="submit" value="Save">Save </button>
+        </div>
+      
     }
 </div>
