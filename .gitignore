@@ -246,3 +246,8 @@ ModelManifest.xml
 /LitBookmarks/LitBookmarks/bin/*.xml
 /LitBookmarks/LitBookmarks/bin/*.pdb
 /LitBookmarks/LitBookmarks/bin/*.config
+/LitBookmarks/LitBookmarks.Tests/obj/Debug/*.cache
+/LitBookmarks/LitBookmarks.Tests/obj/Debug/*.txt
+/LitBookmarks/LitBookmarks.Tests/obj/Debug/*.dll
+/LitBookmarks/LitBookmarks.Tests/obj/Debug/*.pdb
+/LitBookmarks/LitBookmarks.Tests/obj/Debug/*.cs
