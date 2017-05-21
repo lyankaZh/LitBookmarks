@@ -25,7 +25,7 @@ namespace LitBookmarks.Controllers
                 if (user.Following.Contains(currentUser))
                 {
                     followers.Add(
-                        GetUserViewModelByUserId(user.Id)
+                        GetUserViewModelByUserId(user.Id, "/Follow/ShowMyFollowers")
                        );
                 }
             }
@@ -62,7 +62,7 @@ namespace LitBookmarks.Controllers
         }
 
 
-        private UserViewModel GetUserViewModelByUserId(string userId)
+        private UserViewModel GetUserViewModelByUserId(string userId, string returnUrl = null)
         {
             var user = _unitOfWork.UserRepository.GetById(userId);
             return new UserViewModel()
@@ -83,6 +83,7 @@ namespace LitBookmarks.Controllers
                     where u.Following.Contains(user)
                     select u).Count(),
                 IsFollowing = true,
+                ReturnUrl = returnUrl
 
             };
         }
@@ -93,7 +94,7 @@ namespace LitBookmarks.Controllers
             var following = new List<UserViewModel>();
             foreach (var user in currentUser.Following)
             {
-                following.Add(GetUserViewModelByUserId(user.Id));
+                following.Add(GetUserViewModelByUserId(user.Id, "/Follow/ShowFollowing"));
             }
             return following;
         }
@@ -122,8 +123,9 @@ namespace LitBookmarks.Controllers
 
             var returnUrl = Request.UrlReferrer == null ? "Profile/MyProfile" :
                     Request.UrlReferrer.PathAndQuery;
-
+            returnUrl = returnUrl.Replace("IsFollowing=False", "IsFollowing=True");
             return Redirect(returnUrl);
+            // return Redirect(user.ReturnUrl);
         }
 
         public ActionResult Unfollow(UserViewModel user)
@@ -135,8 +137,9 @@ namespace LitBookmarks.Controllers
             _unitOfWork.Save();
             var returnUrl = Request.UrlReferrer == null ? "Profile/MyProfile" :
                 Request.UrlReferrer.PathAndQuery;
-
+            returnUrl = returnUrl.Replace("IsFollowing=True", "IsFollowing=False");
             return Redirect(returnUrl);
+            // return Redirect(user.ReturnUrl);
         }
     }
 }

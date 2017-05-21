@@ -210,6 +210,7 @@ namespace LitBookmarks.Controllers
                                            where u.Following.Contains(user)
                                            select u).Count(),
                         IsFollowing = currentUser.Following.Contains(user),
+                        ReturnUrl = "/Profile/ShowAllUsers"
                     });
             }
             if (searchText != null)
