@@ -224,6 +224,7 @@ namespace LitBookmarks.Controllers
             return View("FollowView", allUsers);
         }
 
+ 
         public ActionResult ShowAnotherUserProfile(UserViewModel user)
         {
             return View("AnotherUserView", user);

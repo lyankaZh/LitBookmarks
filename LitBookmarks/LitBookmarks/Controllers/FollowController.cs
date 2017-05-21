@@ -46,15 +46,15 @@ namespace LitBookmarks.Controllers
             return View("FollowView", followers);
         }
 
-
+        [ChildActionOnly]
         public ActionResult ShowFollowersOfUserById(string id)
         {
             var followers = GetFollowers(id);
           
             return PartialView("FollowView", followers);
         }
-
-
+        
+        [ChildActionOnly]
         public ActionResult ShowFollowingOfUserById(string id)
         {
             var following = GetFollowing(id);
