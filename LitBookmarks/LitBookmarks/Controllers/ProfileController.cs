@@ -209,7 +209,7 @@ namespace LitBookmarks.Controllers
                         FollowersAmount = (from u in _unitOfWork.UserRepository.Get()
                                            where u.Following.Contains(user)
                                            select u).Count(),
-                        IsFollowing = currentUser.Following.Contains(user),
+                        IsFollowing = currentUser.Following.Contains(user)
                     });
             }
             if (searchText != null)
@@ -224,6 +224,7 @@ namespace LitBookmarks.Controllers
             return View("FollowView", allUsers);
         }
 
+ 
         public ActionResult ShowAnotherUserProfile(UserViewModel user)
         {
             return View("AnotherUserView", user);

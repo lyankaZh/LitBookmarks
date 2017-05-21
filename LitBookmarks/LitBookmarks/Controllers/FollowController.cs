@@ -46,15 +46,15 @@ namespace LitBookmarks.Controllers
             return View("FollowView", followers);
         }
 
-
+        [ChildActionOnly]
         public ActionResult ShowFollowersOfUserById(string id)
         {
             var followers = GetFollowers(id);
           
             return PartialView("FollowView", followers);
         }
-
-
+        
+        [ChildActionOnly]
         public ActionResult ShowFollowingOfUserById(string id)
         {
             var following = GetFollowing(id);
@@ -83,7 +83,6 @@ namespace LitBookmarks.Controllers
                     where u.Following.Contains(user)
                     select u).Count(),
                 IsFollowing = true,
-
             };
         }
 
@@ -122,7 +121,7 @@ namespace LitBookmarks.Controllers
 
             var returnUrl = Request.UrlReferrer == null ? "Profile/MyProfile" :
                     Request.UrlReferrer.PathAndQuery;
-
+            returnUrl = returnUrl.Replace("IsFollowing=False", "IsFollowing=True");
             return Redirect(returnUrl);
         }
 
@@ -135,7 +134,7 @@ namespace LitBookmarks.Controllers
             _unitOfWork.Save();
             var returnUrl = Request.UrlReferrer == null ? "Profile/MyProfile" :
                 Request.UrlReferrer.PathAndQuery;
-
+            returnUrl = returnUrl.Replace("IsFollowing=True", "IsFollowing=False");
             return Redirect(returnUrl);
         }
     }
