@@ -209,8 +209,7 @@ namespace LitBookmarks.Controllers
                         FollowersAmount = (from u in _unitOfWork.UserRepository.Get()
                                            where u.Following.Contains(user)
                                            select u).Count(),
-                        IsFollowing = currentUser.Following.Contains(user),
-                        ReturnUrl = "/Profile/ShowAllUsers"
+                        IsFollowing = currentUser.Following.Contains(user)
                     });
             }
             if (searchText != null)
