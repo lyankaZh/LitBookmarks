@@ -13,6 +13,7 @@ namespace LitBookmarks
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
         }
     }
 }

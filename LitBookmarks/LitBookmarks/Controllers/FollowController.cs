@@ -64,6 +64,7 @@ namespace LitBookmarks.Controllers
 
         private UserViewModel GetUserViewModelByUserId(string userId)
         {
+            var currentUser = _unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
             var user = _unitOfWork.UserRepository.GetById(userId);
             return new UserViewModel()
             {
@@ -82,7 +83,7 @@ namespace LitBookmarks.Controllers
                 FollowersAmount = (from u in _unitOfWork.UserRepository.Get()
                     where u.Following.Contains(user)
                     select u).Count(),
-                IsFollowing = true,
+                IsFollowing = currentUser.Following.Contains(user)
             };
         }
 

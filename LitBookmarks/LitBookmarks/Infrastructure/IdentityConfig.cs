@@ -1,6 +1,7 @@
 ﻿using Domain_Logic.Concrete;
 using Domain_Logic.Entities;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
@@ -11,6 +12,8 @@ namespace LitBookmarks.Infrastructure
     {
         public void Configuration(IAppBuilder app)
         {
+            
+
             app.CreatePerOwinContext<BookmarkDbContext>(BookmarkDbContext.Create);
             app.CreatePerOwinContext<AppUserManager>(AppUserManager.Create);
             app.CreatePerOwinContext<AppRoleManager>(AppRoleManager.Create);
@@ -19,6 +22,8 @@ namespace LitBookmarks.Infrastructure
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Account/Login"),
             });
+
+            app.MapSignalR();
         }
     }
 }
