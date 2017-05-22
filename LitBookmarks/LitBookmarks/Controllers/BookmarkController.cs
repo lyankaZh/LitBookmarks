@@ -1,12 +1,10 @@
 ﻿using Domain_Logic.Abstract;
-using Domain_Logic.Concrete;
 using Domain_Logic.Entities;
 using LitBookmarks.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace LitBookmarks.Controllers
@@ -35,7 +33,7 @@ namespace LitBookmarks.Controllers
             List<BookmarkViewModel> myBookmarks = GetBookmarksByUserId(User.Identity.GetUserId());
             if (searchText != null)
             {
-                myBookmarks = myBookmarks.Where(x => x.Book == searchText).ToList();
+                myBookmarks = myBookmarks.Where(x => x.Book.ToLower().Contains(searchText.ToLower())).ToList();
             }
             return View("MyBookmarks", myBookmarks);
         }

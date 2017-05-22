@@ -33,7 +33,6 @@
     <form method="get" action="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString())">
         @Html.TextBox("searchText", "", new { @class = "search-field", placeholder = "Type search text here...", @value = "" })
         <div class="submit-container">
-
             <input type="submit" class="submit" value="">
         </div>
     </form>
