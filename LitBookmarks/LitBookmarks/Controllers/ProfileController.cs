@@ -191,26 +191,7 @@ namespace LitBookmarks.Controllers
             
             foreach (var user in _unitOfWork.UserRepository.Get().Where(x => x != currentUser && x.UserName != "Admin"))
             {
-                allUsers.Add(
-                    new UserViewModel()
-                    {
-                        Id = user.Id,
-                        AboutMyself = user.AboutMyself,
-                        Age = user.Age,
-                        Email = user.Email,
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
-                        UserName = user.UserName,
-                        ImageData = user.ImageData,
-                        ImageMimeType = user.ImageMimeType,
-                        BookmarksAmount = user.Bookmarks.Count,
-                        FavoriteGenres = user.FavoriteGenres,
-                        FollowingAmount = user.Following.Count,
-                        FollowersAmount = (from u in _unitOfWork.UserRepository.Get()
-                                           where u.Following.Contains(user)
-                                           select u).Count(),
-                        IsFollowing = currentUser.Following.Contains(user)
-                    });
+                allUsers.Add(GetUserViewModelByUserId(user.Id));
             }
             if (searchText != null)
             {
@@ -224,10 +205,34 @@ namespace LitBookmarks.Controllers
             return View("FollowView", allUsers);
         }
 
- 
-        public ActionResult ShowAnotherUserProfile(UserViewModel user)
+        private UserViewModel GetUserViewModelByUserId(string userId)
         {
-            return View("AnotherUserView", user);
+            var currentUser = _unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
+            var user = _unitOfWork.UserRepository.GetById(userId);
+            return new UserViewModel()
+            {
+                Id = user.Id,
+                AboutMyself = user.AboutMyself,
+                Age = user.Age,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserName = user.UserName,
+                ImageData = user.ImageData,
+                ImageMimeType = user.ImageMimeType,
+                FavoriteGenres = user.FavoriteGenres,
+                BookmarksAmount = user.Bookmarks.Count,
+                FollowingAmount = user.Following.Count,
+                FollowersAmount = (from u in _unitOfWork.UserRepository.Get()
+                                   where u.Following.Contains(user)
+                                   select u).Count(),
+                IsFollowing = currentUser.Following.Contains(user)
+            };
+        }
+
+        public ActionResult ShowAnotherUserProfile(string id)
+        {
+            return View("AnotherUserView", GetUserViewModelByUserId(id));
         }
     }
 }

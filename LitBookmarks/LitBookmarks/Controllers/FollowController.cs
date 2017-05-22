@@ -112,10 +112,10 @@ namespace LitBookmarks.Controllers
             return View("FollowView", following);
         }
 
-        public ActionResult Follow(UserViewModel user)
+        public ActionResult Follow(string id)
         {
             var currentUser = _unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
-            var userToFollow = _unitOfWork.UserRepository.GetById(user.Id);
+            var userToFollow = _unitOfWork.UserRepository.GetById(id);
             currentUser.Following.Add(userToFollow);
             _unitOfWork.UserRepository.Update(currentUser);
             _unitOfWork.Save();
@@ -126,10 +126,10 @@ namespace LitBookmarks.Controllers
             return Redirect(returnUrl);
         }
 
-        public ActionResult Unfollow(UserViewModel user)
+        public ActionResult Unfollow(string id)
         {
             var currentUser = _unitOfWork.UserRepository.GetById(User.Identity.GetUserId());
-            var userToFollow = _unitOfWork.UserRepository.GetById(user.Id);
+            var userToFollow = _unitOfWork.UserRepository.GetById(id);
             currentUser.Following.Remove(userToFollow);
             _unitOfWork.UserRepository.Update(currentUser);
             _unitOfWork.Save();
