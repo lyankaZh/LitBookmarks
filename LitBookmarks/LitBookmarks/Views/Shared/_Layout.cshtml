@@ -3,6 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='//fonts.googleapis.com/css?family=Asset' rel='stylesheet'>
+    <link href='//fonts.googleapis.com/css?family=Bahiana' rel='stylesheet'>
+    <link href='//fonts.googleapis.com/css?family=Bad Script' rel='stylesheet'>
     <title>Bookmarks</title>
     <link href="~/Styles/layoutStyles.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.js"></script>
@@ -13,58 +16,61 @@
         
             <div id="bookmark">
                 <img src="~/Images/bookmarkIcon.png" height="50" width="50"/>
-                <strong>Bookmarks</strong>
+                <strong style="font-family: 'Bad Script'" >Bookmarks</strong>
                 <br/>
                 <br/>
                 
             </div>
         
         <li>
-            @Html.ActionLink("Profile info", "MyProfile", "Profile")
+            <div class="pointFont">
+                @Html.ActionLink("Profile info", "MyProfile", "Profile")
+            </div>
+          
 
         </li>
         <li>
-
-            @Html.ActionLink("Add bookmarks", "AddBookmark", "Bookmark")
-
-        </li>
+            <div class="pointFont">
+                @Html.ActionLink("Add bookmarks", "AddBookmark", "Bookmark")
+                </div>
+</li>
         <li>
-
-            @Html.ActionLink("My bookmarks", "ShowMyBookmarks", "Bookmark")
-
-        </li>
+            <div class="pointFont">
+                @Html.ActionLink("My bookmarks", "ShowMyBookmarks", "Bookmark")
+                </div>
+</li>
         <li>
-
-            @Html.ActionLink("My followers", "ShowMyFollowers", "Follow")
-
-        </li>
+            <div class="pointFont">
+                @Html.ActionLink("My followers", "ShowMyFollowers", "Follow")
+                </div>
+</li>
         <li>
-
-            @Html.ActionLink("Following", "ShowFollowing", "Follow")
-
-        </li>
+            <div class="pointFont">
+                @Html.ActionLink("Following", "ShowFollowing", "Follow")
+                </div>
+</li>
         <li>
-
-            @Html.ActionLink("All bookmarks", "GetAllBookmarks", "Bookmark")
-
-        </li>
+            <div class="pointFont">
+                @Html.ActionLink("All bookmarks", "GetAllBookmarks", "Bookmark")
+                </div>
+</li>
         <li>
-
-            @Html.ActionLink("All users", "ShowAllUsers", "Profile")
-
-        </li>
+            <div class="pointFont">
+                @Html.ActionLink("All users", "ShowAllUsers", "Profile")
+                </div>
+</li>
         
         <li>
-
-            @Html.ActionLink("Go to chat", "Send", "Message")
-
-        </li>
+            <div class="pointFont">
+                @Html.ActionLink("Go to chat", "Send", "Message")
+</div>
+</li>
 
         <li>
-
-            @Html.ActionLink("Logout", "LogOut", "Account")
-
-        </li>
+            <div class="pointFont">
+                @Html.ActionLink("Logout", "LogOut", "Account")
+                </div>
+</li>
         
       
     </ul>
@@ -85,3 +91,4 @@
         $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
     });
 </script>
+

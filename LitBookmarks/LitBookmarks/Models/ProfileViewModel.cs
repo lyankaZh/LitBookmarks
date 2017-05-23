@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using Domain_Logic.Entities;
 
 namespace LitBookmarks.Models
@@ -18,8 +19,8 @@ namespace LitBookmarks.Models
         public string Email { get; set; }
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
-
         public List<Genre> FavoriteGenres { get; set; }
-        public List<AllGenresCheckBox> AllGenres { get; set; }
+        public List<string> NotSelectedGenres { get; set; }
+
     }
 }

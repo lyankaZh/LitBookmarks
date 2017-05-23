@@ -3,6 +3,12 @@ body {
     margin: 0;
 }
 
+.pointFont {
+    font-family: 'Bahiana' !important;
+    font-size: 22px !important;
+}
+
+
 ul {
     list-style-type: none;
     margin: 0;

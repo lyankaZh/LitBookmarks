@@ -27,7 +27,7 @@
 
     <div class="mycontainer">
         <h1> <span class="title">@Model.FirstName @Model.LastName</span></h1>
-        <p class="title">LModified Date: @Model.LastActivityDateTime</p>
+        <p class="title">Modified Date: @Model.LastActivityDateTime</p>
         <p class="title">About me: @Model.AboutMyself</p>
         <p class="title">Age: @Model.Age</p>
         <p class="title">Email: @Model.Email</p>
@@ -47,70 +47,30 @@
             <p class="title">No favorite genres</p>
         }
     </div>
-    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Add Genre</button>
+    <div>
+        @*<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Add Genre</button>
 
-    <div id="demo" class="collapse">         
-
-            @if (Model.FavoriteGenres.Count == 0)
+        <div id="demo" class="collapse">
+            @using (Html.BeginForm("AddFavoriteGenre", "Profile", FormMethod.Post))
             {
-                bool IsFound = false;
-                for (var i = 0; i < Model.AllGenres.Count(); i++)
-                {
-                    var genre = Model.AllGenres[i].Genre;
-                    @Html.HiddenFor(model => model.AllGenres[i].Genre.GenreId)
-                    @Html.HiddenFor(model => model.AllGenres[i].Genre.Name)
-                    @Html.CheckBoxFor(model => model.AllGenres[i].Selected)
-                    @Html.LabelFor(model => model.AllGenres[i].Genre.Name, genre.Name)
-                    IsFound = true;
-                }
-                if (IsFound)
-                {
-                    @Html.HiddenFor(model=>model.AllGenres)
-                    @Html.ActionLink("Save", "AddFavoriteGenre", "Profile", Model.AllGenres, new { @class = "btn btn-success" })
-                }
-                else
-                {
-                    <span>No genres to add</span>
-                }
+                <input type="text" id="txtId">
+                <input type="submit" value="Add" class="btn btn-success btn-lg" />
             }
-            @if (Model.FavoriteGenres.Count > 0)
-            {
-                bool IsFound = false;
+           
+        </div>*@
 
-                for (var i = 0; i < Model.AllGenres.Count(); i++)
-                {
-                    if (Model.FavoriteGenres.Find(x => x.GenreId.Equals(Model.AllGenres[i].Genre.GenreId)) == null)
-                    {
-                        var genre = Model.AllGenres[i].Genre;
-                        @Html.HiddenFor(model => model.AllGenres[i].Genre.GenreId)
-                        @Html.HiddenFor(model => model.AllGenres[i].Genre.Name)
-                        @Html.CheckBoxFor(model => model.AllGenres[i].Selected)
-                        @Html.LabelFor(model => model.AllGenres[i].Genre.Name, genre.Name)
-                        IsFound = true;
-                    }
-                }
-                if (IsFound)
-                {
-                    @Html.HiddenFor(model => model.AllGenres)
-                    @Html.ActionLink("Save", "AddFavoriteGenre", "Profile", Model.AllGenres, new { @class = "btn btn-success" })
-                }
-                else
-                {
-                    <span>No genres to add</span>
-                }
-            }   
-    </div>
- 
-    <div id="normal-button">
-        @Html.ActionLink("Edit Profile", "Edit", "Profile", null, new { @class = "btn btn-warning" })
+        <div id="normal-button">
+            @Html.ActionLink("Edit Profile", "Edit", "Profile", null, new { @class = "btn btn-warning" })
 
-        @using (Html.BeginForm("Delete", "Profile"))
+            @using (Html.BeginForm("Delete", "Profile"))
             {
             @Html.HiddenFor(x => Model.Id)
             <input type="submit"
                    class="btn btn-danger"
                    onclick="return confirm('Are you sure you wish to delete your profile?');"
                    value="Delete" />
-        }
+            }
+        </div>
     </div>
+  
     </div>

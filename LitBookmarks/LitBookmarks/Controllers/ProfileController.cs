@@ -37,17 +37,17 @@ namespace LitBookmarks.Controllers
             profile.FavoriteGenres = currentUser.FavoriteGenres;
             profile.LastActivityDateTime = currentUser.LastActivityDateTime;
             profile.ImageData = currentUser.ImageData;
-            var checkBoxes = new List<AllGenresCheckBox>();
 
-            for (int i = 0; i < _unitOfWork.GenreRepository.Get().ToList().Count; i++)
+            for (int i = 0; i < _unitOfWork.GenreRepository.Get().Count(); i++)
             {
-                checkBoxes.Add(new AllGenresCheckBox()
+                for (int j = 0; j < currentUser.FavoriteGenres.Count(); j++)
                 {
-                    Genre = _unitOfWork.GenreRepository.Get().ToList()[i]
-                });
+                    if (_unitOfWork.GenreRepository.Get().ToList()[i].GenreId == currentUser.FavoriteGenres[j].GenreId)
+                    {
+                        profile.NotSelectedGenres.Add(_unitOfWork.GenreRepository.Get().ToList()[i].Name);
+                    }
+                }
             }
-
-            profile.AllGenres = checkBoxes;
 
             return View("MyProfile", profile);
         }
