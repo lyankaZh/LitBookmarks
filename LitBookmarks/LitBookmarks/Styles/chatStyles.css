@@ -13,7 +13,8 @@ body{
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 .box.box-primary {
-    border-top-color: #3c8dbc;
+    border-top-color: burlywood;
+    border-width: 20px;
 }
 .box.box-info {
     border-top-color: #00c0ef;
@@ -324,7 +325,8 @@ body{
     text-decoration: none;
     display:auto;
     font-size: 16px;
-    border-radius: 10%
+    border-radius: 10%;
+        margin-left: 10px;
 }
 
 .search-field {

@@ -1,11 +1,10 @@
 ﻿body {
     font-size: 16px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Bad Script';
+    font-size: 22px;
     font-weight: 300;
     margin: 0;
     color: #666;
-    background-image: url('../Images/background-book.jpg');
-    background-size: cover;
 }
 
 #img-style {
@@ -15,14 +14,27 @@
     border-radius: 20%;
 }
 
-.card {
+.body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 100%;
+    width: 100%;
     margin: auto;
     background: burlywood;
     text-align: center;
-    font-family: 'Lato', sans-serif;
-    padding: 20px;
+    font-family: 'Bad Script';
+    font-size: 20px;
+    padding: 40px;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 100%;
+    margin: auto;
+
+    background-image: url('../Images/bookmarkBackground.jpg');
+    text-align: center;
+    font-family: 'Bad Script';
+    font-size: 20px;
+    padding: 40px;
 }
 
 .barImage {
@@ -33,7 +45,7 @@
 .mycontainer {
     padding: 25px;
     width: 70%;
-    background: blanchedalmond;
+    background: aliceblue;
     margin: auto;
     border-radius: 18px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -45,7 +57,7 @@
 
 .title {
     color: grey;
-    font-size: 18px;
+    font-size: 28px;
 }
 
 

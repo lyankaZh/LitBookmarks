@@ -214,9 +214,8 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Images\background-book.jpg" />
+    <Content Include="Images\bookmarkBackground.jpg" />
     <Content Include="Images\bookmarkIcon.png" />
-    <Content Include="Images\booksBackground.jpg" />
     <Content Include="Images\defaultImage.png" />
     <Content Include="Images\form-bg.png" />
     <Content Include="Images\magnifier.png" />
