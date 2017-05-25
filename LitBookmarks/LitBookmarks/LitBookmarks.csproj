@@ -310,7 +310,6 @@
     <Folder Include="Views\Comment\" />
     <Folder Include="Views\Follow\" />
     <Folder Include="Views\Like\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain Logic\Domain Logic.csproj">
